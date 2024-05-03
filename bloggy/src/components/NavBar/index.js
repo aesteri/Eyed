@@ -15,6 +15,9 @@ const Navbar = () => {
                     <NavLink to="/project" activeStyle>
                         Project
                     </NavLink>
+                    <NavLink to="/login" activeStyle>
+                        Log In
+                    </NavLink>
                 </NavMenu>
             </Nav>
         </>
