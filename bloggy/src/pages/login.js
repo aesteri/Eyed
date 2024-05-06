@@ -3,8 +3,8 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import './css/login.css';
 
-var posts = [{"header": "blahblah", "body": "yuhyuh", "picture": null, "tag": "hytech"},
-        {"header": "jahjah", "body": "kaka", "picture": "yuh.png", "tag": "random"}];
+var posts = [{"header": "blahblah", "body": "yuhyuh", "picture": [null], "tag": "hytech"},
+        {"header": "jahjah", "body": "kaka", "picture": ["yuh.png", null], "tag": "random"}];
 var about = [];
 
 //Change to recents

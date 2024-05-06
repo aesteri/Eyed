@@ -15,13 +15,23 @@ const filterByTag = (tag) => {
 
 const Blog = () => {
     const [filteredPosts, setFilteredPosts] = useState(posts);
-
+    const [currentImageIndices, setCurrentImageIndices] = useState(
+        Array(posts.length).fill(0) // Initialize indices with 0 for each post
+      );
     const handleFilter = (tag) => {
         // Filter posts and update the state
         const filtered = filterByTag(tag, posts);
         setFilteredPosts(filtered);
     };
-
+    const handleNext = (postIndex) => {
+        setCurrentImageIndices((prevIndices) => {
+          // Increment the current index for the specific post
+          const newIndices = [...prevIndices];
+          newIndices[postIndex] = (newIndices[postIndex] + 1) % filteredPosts[postIndex].picture.length; // Loop back if exceeding
+          return newIndices;
+        });
+      };
+    const counter = 0;
     return (
         <div>
             <h1>You can write your blogs!</h1>;
@@ -32,12 +42,20 @@ const Blog = () => {
                 <button className="tag">dee</button>
             </div>
             <ul>
-                {filteredPosts.map((post) => (
-                    <li>    
+                {filteredPosts.map((post, index) => (
+                    <li key={index}>    
                         <div className="postContain">
                             <h1>{post.header}</h1>
                             <h3>{post.body}</h3>
-                            <img src={post.picture}/>
+                            {/* Handle null or valid image src */}
+                            {post.picture[currentImageIndices[index]] ? (
+                                <img src={post.picture[currentImageIndices[index]]} alt={post.header} />
+                            ) : (
+                                <p>No Image Available</p>
+                            )}
+                            {post.picture.length > 1 && (
+                                <button onClick={() => handleNext(index)}>Next Image</button>
+                            )}
                         </div>
                     </li>
                 ))}
