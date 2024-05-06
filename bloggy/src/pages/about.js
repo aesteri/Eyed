@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { highlights } from "./login.js"
+import { highlights } from "./login.js";
+import './css/about.css';
 
 
  

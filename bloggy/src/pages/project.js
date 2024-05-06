@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { projects } from "./login.js"
-
+import './css/project.css';
 
 const Project = () => {
 

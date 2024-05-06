@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { posts } from "./login.js"
-
+import './css/blog.css';
 
 const filterByTag = (tag) => {
     if (tag === "all" || tag === "") {
