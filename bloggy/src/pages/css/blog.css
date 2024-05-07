@@ -1,4 +1,5 @@
-.tag {
+.tag,
+.postContain {
     align-self: center;
     background-color: #fff;
     background-image: none;
@@ -29,11 +30,17 @@
     touch-action: manipulation;
   }
   
-  .tag:hover {
+  .tag:hover,
+  .postContain:hover {
     box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
     transform: translate3d(0, 2px, 0);
   }
   
-  .tag:focus {
+  .tag:focus,
+  .postContain:focus {
     box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
   }
+  ul {
+    list-style-type: none;
+  }
+  

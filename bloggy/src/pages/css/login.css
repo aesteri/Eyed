@@ -6,7 +6,10 @@
 .noAccountYet,
 .tag1,
 .tag2,
-.tag3 {
+.tag3, 
+.Addpost,
+.Addproject,
+.loginContain {
     align-self: center;
     background-color: #fff;
     background-image: none;
@@ -44,7 +47,10 @@
 .noAccountYet:hover,
 .tag1:hover,
 .tag2:hover,
-.tag3:hover {
+.tag3:hover,
+.Addpost:hover,
+.Addproject:hover,
+.loginContain:hover {
     box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
     transform: translate3d(0, 2px, 0);
 }
@@ -56,11 +62,25 @@
 .noAccountYet:focus,
 .tag1:focus,
 .tag2:focus,
-.tag3:focus {
+.tag3:focus,
+.Addpost:focus,
+.Addproject:focus,
+.loginContain:focus {
     box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
 
 .postPreview {
     width: 50%;
     height: auto;
+}
+
+.Addpost,
+.Addproject {
+    display: flex;
+    justify-content: center;
+}
+
+.popupContainer {
+    display: block;
+    align-items: center;
 }
