@@ -33,7 +33,7 @@ const Blog = () => {
       };
     const counter = 0;
     return (
-        <div>
+        <div className="Blog">
             <h1>You can write your blogs!</h1>;
             <div className="tagContain">
                 <button className="tag" onClick={() => handleFilter("")}>all</button>

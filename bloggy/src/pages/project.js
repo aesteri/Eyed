@@ -5,7 +5,7 @@ import './css/project.css';
 const Project = () => {
 
     return (
-        <div>
+        <div className="Projects">
             <ul>
                 {projects.map((project) => (
                     <li>    

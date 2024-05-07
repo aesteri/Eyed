@@ -66,7 +66,7 @@ const Login = () => {
         setProjectFile(URL.createObjectURL(e.target.files[0]));
     }
     return (
-        <div>
+        <div className="Login">
             <div className="loginContain">
                 <h1 className="loginText">Login</h1>
                 <input className="usernameLogin" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)}/>

@@ -6,7 +6,7 @@ import './css/about.css';
  
 const About = () => {
     return (
-        <div>
+        <div className="About">
             <h1>
                 yawr
             </h1>
