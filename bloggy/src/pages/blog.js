@@ -34,7 +34,7 @@ const Blog = () => {
     const counter = 0;
     return (
         <div className="Blog">
-            <h1>You can write your blogs!</h1>;
+            <h1>Posts</h1>
             <div className="tagContain">
                 <button className="tag" onClick={() => handleFilter("")}>all</button>
                 <button className="tag" onClick={() => handleFilter("hytech")}>poo</button>

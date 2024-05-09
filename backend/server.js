@@ -7,7 +7,7 @@ const app = express();
 app.use(cors());
 
 const db = mysql.createConnection({
-    host: 'christineyewonkim.com',
+    host: 'gator4232.hostgator.com',
     user: 'christs0_christine',
     password: 'Gu(OA}1HXWL(',
     database: "christs0_blog"
@@ -16,9 +16,11 @@ const db = mysql.createConnection({
 db.connect(function(err) {
     if (err) throw err;
     console.log("Connected!");
+    /** 
     var sql = "SELECT * FROM Users";
     db.query(sql, function (err, result) {
         if (err) throw err;
         console.log("Table created");
     });
+    */
   });

@@ -82,7 +82,7 @@
 
 .popupContainer {
     display: block;
-    align-items: center;
+    text-align: center;
 }
 .Login {
     display: block;
