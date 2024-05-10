@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import './css/login.css';
+import flower from './pictures/flower.png';
 
-var posts = [{"header": "blahblah", "body": "yuhyuh", "picture": [null], "tag": "hytech"},
-        {"header": "jahjah", "body": "kaka", "picture": ["yuh.png", null], "tag": "random"}];
-var about = [];
+var posts = [{"header": "Strawberry cakes", "body": "today I made some really good bread. i made soe cake! yaya. This is filler. Idk what else to say but I hope it is long im tiredaf too fuckkkkfsidfusdf but no cussing allowed fosho", "picture": [null], "tag": "baking"},
+        {"header": "jahjah", "body": "kaka", "picture": ["yuh.png", null, "slay.png"], "tag": "hytech"},
+        {"header": "jahjah", "body": "kaka", "picture": ["yuh.png", null, "slay.png"], "tag": "exchange24"},
+        {"header": "jahjah", "body": "kaka", "picture": ["yuh.png", null, "slay.png"], "tag": "gatech"}];
+var about = []; 
 const MAX_COUNT = 5;
 //Change to recents
 var highlights = [];
 
-var projects = [{"header": "Project", "body":"project description", "picture":"yuh.png"}, {"header": "Poo poo", "body":"project description", "picture": null}];
+var projects = [{"header": "Project", "body":"project description and I like li liek like lei ke i nad yeah thats funny omg hahahahhaha liemp pteuim", "picture":["yuh.png", "slay.png"], "link":"google.com"}, {"header": "Poo poo", "body":"project description", "picture": [null], "link":"google.com"}];
 var currentUser = [];
 
 
@@ -67,11 +70,11 @@ const Login = () => {
     }
     return (
         <div className="Login">
+            <h1 className="loginText">Login</h1>
             <div className="loginContain">
-                <h1 className="loginText">Login</h1>
                 <input className="usernameLogin" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)}/>
                 <input className="passwordLogin" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-                <div>
+                <div className="buttonContain">
                     <button className="submitBtn" onClick={handleLogin}>Log in</button>
                     {showPopup && (
                         <Popup open={showPopup} onClose={() => setShowPopup(false)} modal>
@@ -125,7 +128,7 @@ const Login = () => {
                             </div>
                         </Popup>
                     )}
-                    <Popup trigger={<button className="noAccountYet">Register</button>} modal nested>
+                    <Popup className='important' trigger={<button className="noAccountYet">Register</button>} modal nested>
                         {
                             close => (
                                 <div className="modal">
@@ -134,7 +137,7 @@ const Login = () => {
                                             <h1 className="registerText">Register</h1>
                                             <input className="username" placeholder="Username"/>
                                             <input className="password" placeholder="Password"/>
-                                            <input className="repassword" placeholder="Password"/>
+                                            <input className="repassword" placeholder="Repassword"/>
                                         </div>
                                         <button className="registerBtn" onClick={() => close()}>Submit</button>
                                     </div>
@@ -142,7 +145,7 @@ const Login = () => {
                             )
                         }
                     </Popup>
-            </div>
+                </div>
             </div>
         </div>
     );

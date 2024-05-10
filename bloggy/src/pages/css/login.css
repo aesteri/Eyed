@@ -9,7 +9,9 @@
 .tag3, 
 .Addpost,
 .Addproject,
-.loginContain {
+.loginContain,
+.important {
+    -webkit-tap-highlight-color: transparent;
     align-self: center;
     background-color: #fff;
     background-image: none;
@@ -50,7 +52,8 @@
 .tag3:hover,
 .Addpost:hover,
 .Addproject:hover,
-.loginContain:hover {
+.loginContain:hover,
+.important:hover {
     box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
     transform: translate3d(0, 2px, 0);
 }
@@ -65,7 +68,8 @@
 .tag3:focus,
 .Addpost:focus,
 .Addproject:focus,
-.loginContain:focus {
+.loginContain:focus,
+.important:focus {
     box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
 
@@ -87,4 +91,41 @@
 .Login {
     display: block;
     text-align: center;
+}
+.buttonContain {
+    padding: 20px;
+}
+.submitBtn, .noAccountYet {
+    margin: 5px;
+}
+
+.usernameLogin, .passwordLogin, .username, .password, .repassword {
+    width: 25%;
+    height: 15px;
+    border-radius: 4px;
+    padding-left: 12px;
+    font-size: 14px;
+    font-weight: normal;
+    border: 1px solid rgb(137, 151, 155);
+    transition: border-color 150ms ease-in-out 0s;
+    outline: none;
+    color: rgb(33, 49, 60);
+    background-color: rgb(255, 255, 255);
+    padding-right: 12px;
+    :hover{
+        box-shadow: rgb(231 238 236) 0px 0px 0px 3px;
+    }
+    margin: 5px;
+}
+.modal {
+    padding: 10px;
+    text-align: center;
+}
+
+.registerBtn {
+    margin: 10px;
+}
+
+.loginContain {
+    margin: 20px;
 }

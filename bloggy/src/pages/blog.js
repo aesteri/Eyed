@@ -25,41 +25,68 @@ const Blog = () => {
     };
     const handleNext = (postIndex) => {
         setCurrentImageIndices((prevIndices) => {
-          // Increment the current index for the specific post
-          const newIndices = [...prevIndices];
-          newIndices[postIndex] = (newIndices[postIndex] + 1) % filteredPosts[postIndex].picture.length; // Loop back if exceeding
-          return newIndices;
+            const newIndices = [...prevIndices]; // Create a copy of the current indices
+
+            let currentIndex = newIndices[postIndex];
+            const totalImages = filteredPosts[postIndex].picture.length;
+            let nextIndex = (currentIndex + 1) % totalImages;
+        
+            // Keep incrementing until a valid image is found or we've looped once
+            let iterations = 0;
+            while (
+              !filteredPosts[postIndex].picture[nextIndex] &&
+              iterations < totalImages
+            ) {
+              nextIndex = (nextIndex + 1) % totalImages;
+              iterations++;
+            }
+        
+            // If iterations equals totalImages, it means all images are null, so we reset to zero
+            if (iterations === totalImages) {
+              nextIndex = 0; // Start from beginning
+            }
+        
+            newIndices[postIndex] = nextIndex; // Set the new index
+            return newIndices;
         });
       };
     const counter = 0;
     return (
         <div className="Blog">
-            <h1>Posts</h1>
-            <div className="tagContain">
-                <button className="tag" onClick={() => handleFilter("")}>all</button>
-                <button className="tag" onClick={() => handleFilter("hytech")}>poo</button>
-                <button className="tag">wee</button>
-                <button className="tag">dee</button>
+            <div className="firstContain">
+                <h1>Posts</h1>
+                <div className="tagContain">
+                    <button className="tag" onClick={() => handleFilter("")}>all</button>
+                    <button className="tag" onClick={() => handleFilter("hytech")}>hytech</button>
+                    <button className="tag" onClick={() => handleFilter("baking")}>baking</button>
+                    <button className="tag" onClick={() => handleFilter("exchange24")}>exchange @ SNU</button>
+                    <button className="tag" onClick={() => handleFilter("gatech")}>gatech</button>
+                </div>
             </div>
-            <ul>
+            <div className="grid-layout-post">
                 {filteredPosts.map((post, index) => (
-                    <li key={index}>    
-                        <div className="postContain">
+                    <div className="item" key={index}>    
+                        <div className={`postContain ${post.tag}`}>
                             <h1>{post.header}</h1>
                             <h3>{post.body}</h3>
                             {/* Handle null or valid image src */}
-                            {post.picture[currentImageIndices[index]] ? (
-                                <img src={post.picture[currentImageIndices[index]]} alt={post.header} />
-                            ) : (
-                                <p>No Image Available</p>
-                            )}
-                            {post.picture.length > 1 && (
-                                <button onClick={() => handleNext(index)}>Next Image</button>
-                            )}
+                            <div className="pictureContain">
+                                {post.picture[currentImageIndices[index]] ? (
+                                    <img src={post.picture[currentImageIndices[index]]} alt={post.header} />
+                                ) : null}
+                                <p>
+                                    {post.picture[currentImageIndices[index]] 
+                                    ? post.picture[currentImageIndices[index]]
+                                    : null}
+                                </p>
+                                {post.picture.length > 1 && (
+                                    <button className="nextnext" onClick={() => handleNext(index)}> » </button>
+                                )}
+                            </div>
                         </div>
-                    </li>
+                    </div>
                 ))}
-            </ul>
+            </div>
         </div>
     )
 };

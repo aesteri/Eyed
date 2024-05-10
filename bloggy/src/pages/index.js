@@ -5,7 +5,8 @@ import './css/index.css';
 const Home = () => {
     return (
         <div className="Home">
-            <h1>u suc</h1>
+            <h1>u sussc</h1>
+            
         </div>
     );
 };

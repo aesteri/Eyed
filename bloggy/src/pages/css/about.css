@@ -1,4 +1,116 @@
 .About {
     display: block;
     text-align: center;
+    -webkit-tap-highlight-color: transparent;
+}
+h1 {
+    margin: 30px;
+}
+.imageContain {
+    overflow: hidden;
+    margin-top: 40px;
+    @media (max-width: 600px) {
+        margin-top: auto;
+    }
+}
+.stacy {
+    width: 30%;
+    @media (max-width: 600px) {
+        
+        height: auto;
+        object-fit: cover;
+    }
+}
+p {
+    overflow-wrap: break-word; /* Ensures text breaks into new lines */
+    white-space: normal; /* Allows text wrapping */
+    overflow: hidden; /* Prevents horizontal scrolling */
+    text-overflow: ellipsis; /* Adds "..." if text is truncated */
+    text-align: left;
+}
+.aboutSection {
+    margin: 20px;
+    width: 60%;
+    line-height: 2;
+    @media (max-width: 600px) {
+        width: auto;
+        font-size: 12px;
+    }
+}
+ul {
+    list-style: none;
+}
+.first {
+    display: flex;
+    margin: 30px;
+    justify-content: center;
+    padding: 20px;
+    @media (max-width: 600px) {
+        display: block;
+    }
+}
+.contactSection {
+    -webkit-tap-highlight-color: transparent;
+  align-self: center;
+  background-color: #fff;
+  background-image: none;
+  background-position: 0 90%;
+  background-repeat: repeat no-repeat;
+  background-size: 4px 3px;
+  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+  box-sizing: border-box;
+  color: #41403e;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Neucha, sans-serif;
+  font-size: 1rem;
+  line-height: 23px;
+  outline: none;
+  padding: .75rem;
+  text-decoration: none;
+  transition: all 235ms ease-in-out;
+  border-bottom-left-radius: 15px 255px;
+  border-bottom-right-radius: 225px 15px;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin: 50px;
+  text-align: center;
+  @media (max-width: 600px) {
+    font-size: 12px;
+}
+}
+  
+.contactSection:hover {
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+  transform: translate3d(0, 2px, 0);
+}
+  
+.contactSection:focus {
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+}
+
+.faqSection {
+    line-height: 2;
+    width: 55%;
+    @media (max-width: 600px) {
+        width: auto;
+        font-size: 12px;
+        margin: 2%;
+    }
+}
+.together {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin: 30px;
+    margin-bottom: 50px;
+    @media (max-width: 600px) {
+        display: block;
+    }
 }

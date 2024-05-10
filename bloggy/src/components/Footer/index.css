@@ -1,0 +1,32 @@
+.footer {
+    background-color: whitesmoke;
+    color: black;
+    padding: 9px;
+    text-align: center;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    text-decoration: solid;
+    align-items: center;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .footer-links a {
+    color: gray;
+    text-decoration: none;
+    margin: 4px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .footer-links a:hover {
+    text-decoration: underline;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+.footer-links {
+    margin: 10px;
+}
+  
