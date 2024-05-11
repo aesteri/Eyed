@@ -35,6 +35,9 @@ const About = () => {
                         I spend most of my time working on software for Hytech Racing.
                         In my free time, though, I love baking! I love to bake cookies and macarons to anything like making bread from scratch and baking cake. 
                     </p>
+                    <a href="https://www.instagram.com/ddalgi_caeku" target="_blank" rel="noopener noreferrer">
+                        Follow me along my journey in being a part-time pâtissière! 
+                    </a>.
                 </div>
             </div>
             <div className="together">

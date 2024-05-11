@@ -1,13 +1,13 @@
 const express = require('express');
 const mysql = require('mysql')
-
+const http = require('http')
 const cors = require('cors');
 
 const app = express();
 app.use(cors());
 
 const db = mysql.createConnection({
-    host: 'gator4232.hostgator.com',
+    host: 'localhost',
     user: 'christs0_christine',
     password: 'Gu(OA}1HXWL(',
     database: "christs0_blog"

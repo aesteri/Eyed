@@ -86,6 +86,10 @@ ul {
     font-size: 12px;
 }
 }
+
+a {
+    color: plum;
+}
   
 .contactSection:hover {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;

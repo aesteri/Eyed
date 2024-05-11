@@ -74,7 +74,7 @@ const Blog = () => {
                         <div className={`postContain ${post.tag}`} >
                             <Link className="yar" to={`/blog/post/${index}`}>{post.header}</Link>
                             <p>{post.date}</p>
-                            <h3>{post.body[0].slice(0,50) + " ..."}</h3>
+                            <h3>{post.body[0].slice(0,50) + "..."}</h3>
                             {/* Handle null or valid image src */}
                             <div className="pictureContain">
                                 {post.picture[currentImageIndices[index]] ? (

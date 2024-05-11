@@ -2,45 +2,99 @@ import React, { useEffect, useState } from "react";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import './css/login.css';
+import $ from "jquery";
 import { Helmet } from 'react-helmet';
 import TypingField from "./../components/TextInput/TypingField.tsx";
 
-var posts = [{"header": "Strawberry cakes", "body": ["today I made some really good bread.today I made some really good bread. i made soe cake! yaya. This is filler. Idk what etoday I made some really good bread. i made soe cake! yaya. This is filler. Idk what etoday I made some really good bread. i made soe cake! yaya. This is filler. Idk what e i made soe cake! yaya. This is filler. Idk what else to say but I hope it is long im tiredaf too fuckkkkfsidfusdf but no cussing allowed fosho","today I made some really good bread.today I made some really good bread. i made soe cake! yaya. This is filler. Idk what etoday I made some really good bread. i made soe cake! yaya. This is filler. Idk what etoday I made some really good bread. i made soe cake! yaya. This is filler. Idk what e i made soe cake! yaya. This is filler. Idk what else to say but I hope it is long im tiredaf too fuckkkkfsidfusdf but no cussing allowed fosho"], "picture": [null], "tag": "baking", "date": "May 10, 2024"},
-        {"header": "Hytech late night", "body": ["kaktoday I made some really good bread. i made soe cake! yaya. This is filler. Idk what etoday I made some really good bread. i made soe cake! yaya. This is filler. Idk what etoday I made some really good bread. i made soe cake! yaya. This is filler. Idk what etoday I made some really good bread. i made soe cake! yaya. This is filler. Idk what ea"], "picture": ["/pictures/flower.png", null, "/pictures/flowerbasket.png"], "tag": "hytech", "date": "May 5, 2024"},
-        {"header": "I spilled the milk", "body": ["katoday I made some really good bread. i made soe cake! yaya. This is filler. Idk what etoday I made some really good bread. i made soe cake! yaya. This is filler. Idk ","what etoday I made some really good bread. i made soe cake! yaya. This is filler. Idk what etoday I made some really good bread. i made soe cake! yaya. This is filler. ","Idk what etoday I made some really good bread. i made soe cake! yaya. This is filler. Idk what etoday I made some really good bread. i made soe cake! yaya. This is filler. Idk what ea"], "picture": ["/pictures/meandstacy.png", null, "/pictures/flower.png"], "tag": "exchange24", "date": "May 3, 2024"},
-        {"header": "A day with me at my internship", "body": ["kaka"], "picture": ["/pictures/meandstacy.png", null, "/pictures/flower.png"], "tag": "gatech", "date": "May 5, 2024"}];
-var about = []; 
+var posts;
+fetch('http://christineyewonkim.com/getPosts.php')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    // Process the JSON data here
+    console.log(data); // This will log the array of dictionaries to the console
+    posts = data;
+  })
+  .catch(error => {
+    console.error('There was a problem with the fetch operation:', error);
+  });
+
 const MAX_COUNT = 5;
 //Change to recents
 var highlights = [];
 
 var projects = [{"header": "Project", "body":"project description and I like li liek like lei ke i nad yeah thats funny omg hahahahhaha liemp pteuim", "picture":["/pictures/flower.png", "/pictures/meandstacy.png"], "link":"google.com", "date": "2023"},
      {"header": "Poo poo", "body":"project description", "picture": [null], "link":"google.com", "date":"2022"}];
-var currentUser = [];
 
 
 export { posts, projects, highlights };
 const Login = () => {
+
+    const [dataArray, setDataArray] = useState([]);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [showPopup, setShowPopup] = useState(false);
     const [fileProject, setProjectFile] = useState();
+    const [uusername, ssetUsername] = useState('');
+    const [ppassword, ssetPassword] = useState('');
+    const [repassword, ssetRePassword] = useState('');
 
+    useEffect(() => {
+        // Fetch data from PHP script
+        fetch('http://christineyewonkim.com/getUsers.php')
+          .then(response => response.json())
+          .then(data => setDataArray(data))
+          .catch(error => console.error('Error fetching data:', error));
+      }, []);
     //variables for post file upload
     const [uploadedFiles, setUploadedFiles] = useState([])
     const [uploadeddFiles, setUploadeddFiles] = useState([])
     const [fileLimit, setFileLimit] = useState(false);
 
     //functions
+    function usernameExists(username, userList) {
+        return userList.some(user => user.username === username);
+      }
+      function userExists(username, password, userList) {
+        return userList.some(user => user.username === username && user.password === password);
+      }
     const handleLogin = () => {
         if (username === "admin" && password === "admin") {
             setShowPopup(true);
         } else {
             setShowPopup(false);
-            // Handle the login logic (authentication, error handling, etc.)
-            // shit shit 
+            if (!userExists(username, password, dataArray)) {
+                alert("Invalid credentials");
+            }
         }
     };
+    const handleRegister = () => {
+       if (usernameExists(uusername, dataArray)) {
+         alert("Username Taken");
+         return;
+       } else if (ppassword != repassword){
+            alert("passwords have to match!");
+            return;
+       } else {
+            handleSQLuser();
+       }
+    };
+    const handleSQLuser = async () => {
+        const formData = new FormData();
+        formData.append('uusername', uusername);
+        formData.append('ppassword', ppassword);
+        const response = await fetch('http://christineyewonkim.com/addUsers.php', {
+          method: 'POST',
+          body: formData,
+        });
+    
+        const data = await response.text();
+        console.log(data);
+      };
     const handleFileEvent =  (e) => {
         const chosenFiles = Array.prototype.slice.call(e.target.files)
         handleUploadFiles(chosenFiles);
@@ -164,6 +218,7 @@ const Login = () => {
                                                 <input className="projectHeader" placeholder="Add header here"/>
                                                 <TypingField/>
                                                 <input className="datee" placeholder="Add date here"/>
+                                                <input className="linkk" placeholder="Add link here"/>
                                             </div>
 
                                             <input id='fileUploadd' type='file' multiple
@@ -205,15 +260,15 @@ const Login = () => {
                         {
                             close => (
                                 <div className="modal">
-                                    <div>
+                                    <form>
                                         <div className="registerContain">
                                             <h1 className="registerText">Register</h1>
-                                            <input className="username" placeholder="Username"/>
-                                            <input className="password" placeholder="Password"/>
-                                            <input className="repassword" placeholder="Repassword"/>
+                                            <input className="username" value={uusername} placeholder="Username"onChange={(e) => ssetUsername(e.target.value)}/>
+                                            <input className="password" value={ppassword} placeholder="Password"onChange={(e) => ssetPassword(e.target.value)}/>
+                                            <input className="repassword" value={repassword} placeholder="Repassword"onChange={(e) => ssetRePassword(e.target.value)}/>
                                         </div>
-                                        <button className="registerBtn" onClick={() => close()}>Submit</button>
-                                    </div>
+                                        <button type="submit"className="registerBtn" onClick={() => { close(); handleRegister(); }}>Submit</button>
+                                    </form>
                                 </div>
                             )
                         }
