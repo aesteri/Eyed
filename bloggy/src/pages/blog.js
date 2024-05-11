@@ -1,30 +1,53 @@
-import React, { useState } from "react";
-import { posts } from "./login.js"
+import React, { useEffect, useState } from "react";
 import './css/blog.css';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet'
 
-const filterByTag = (tag) => {
-    if (tag === "all" || tag === "") {
-        // Return all posts if the tag is "all" or empty
-        return posts;
-    }
-    // Use the filter method to get posts with the specified tag
-    return posts.filter((post) => post.tag === tag);
-};
-
-
-
 const Blog = () => {
-    const [filteredPosts, setFilteredPosts] = useState(posts);
+    const [posts, setPosts] = useState([]);
+    const [filteredPosts, setFilteredPosts] = useState([]);
     const [currentImageIndices, setCurrentImageIndices] = useState(
-        Array(posts.length).fill(0) // Initialize indices with 0 for each post
+       []// Initialize indices with 0 for each post
       );
-    const handleFilter = (tag) => {
-        // Filter posts and update the state
-        const filtered = filterByTag(tag, posts);
-        setFilteredPosts(filtered);
+    useEffect(() => {
+        fetchPosts();
+    }, []);
+
+    useEffect(() => {
+        setFilteredPosts(posts);
+        setCurrentImageIndices(Array(posts.length).fill(0));
+    }, [posts]);
+
+    const fetchPosts = () => {
+        fetch('http://christineyewonkim.com/getPosts.php')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data); // Log the fetched data
+                setPosts(data);
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
     };
+
+    const filterByTag = (tag) => {
+        if (tag === "all" || tag === "") {
+            return posts;
+        }
+        return posts.filter((post) => post.tag === tag);
+    };
+
+    const handleFilter = (tag) => {
+        const filtered = filterByTag(tag);
+        setFilteredPosts(filtered);
+        setCurrentImageIndices(Array(filtered.length).fill(0)); // Reset image indices
+    };
+
     const handleNext = (postIndex) => {
         setCurrentImageIndices((prevIndices) => {
             const newIndices = [...prevIndices]; // Create a copy of the current indices
@@ -52,7 +75,6 @@ const Blog = () => {
             return newIndices;
         });
       };
-    const counter = 0;
     return (
         <div className="Blog">
             <Helmet>

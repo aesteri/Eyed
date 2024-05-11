@@ -1,12 +1,32 @@
-import React, { useState } from "react";
-import { projects } from "./login.js"
+import React, { useEffect, useState } from "react";
 import './css/project.css';
 import { Helmet } from 'react-helmet'
 
+
 const Project = () => {
+    const [projects, setProjects] = useState([]);
     const [currentImageIndices, setCurrentImageIndices] = useState(
-        Array(projects.length).fill(0) // Initialize indices with 0 for each post
+        [] // Initialize indices with 0 for each post
       );
+
+      useEffect(() => {
+        fetch('http://christineyewonkim.com/getProjects.php')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Process the JSON data here
+                console.log(data); // This will log the array of dictionaries to the console
+                setProjects(data);
+                setCurrentImageIndices(Array(data.length).fill(0));
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+    }, []); 
     const handleNext = (projectIndex) => {
         setCurrentImageIndices((prevIndices) => {
             // Increment the current index for the specific post

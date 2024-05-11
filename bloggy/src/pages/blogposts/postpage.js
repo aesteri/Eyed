@@ -7,115 +7,99 @@ import { Link } from 'react-router-dom';
 import TypingField from "../../components/TextInput/TypingField.tsx";
 
 
-var posts;
-fetch('http://christineyewonkim.com/getPosts.php')
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then(data => {
-    // Process the JSON data here
-    console.log(data); // This will log the array of dictionaries to the console
-    posts = data;
-  })
-  .catch(error => {
-    console.error('There was a problem with the fetch operation:', error);
-  });
-
 const PostPage = () => {
-    const [commentinput, setComment] = useState('');    
-    const [comments, setComments] = useState([]);  
-    useEffect(() => {
-        // Fetch data from PHP script
-        fetch('http://christineyewonkim.com/getComments.php')
-          .then(response => response.json())
-          .then(data => setComments(data))
-          .catch(error => console.error('Error fetching data:', error));
-      }, []);
+    const [commentInput, setCommentInput] = useState('');
+    const [comments, setComments] = useState([]);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [post, setPost] = useState({ header: "", body: [], date: "", picture: [] });
+
     const { postId } = useParams();
-    
-    console.log(getLoggedInUser());
-    const curr = comments[postId]?.comments || [];
 
-    const postHeader = posts[postId].header;
-    const postDetails = posts[postId].body;
-    const postDate = posts[postId].date;
-    const postPictures = posts[postId].picture;
+    useEffect(() => {
+        fetchPostData();
+        fetchComments();
+    }, []);
 
-   
-    const handleSQLcomment = async () => {
-        if (!(getLoggedInUser() === null)) {
-            const username = getLoggedInUser();
-            const today = getDate();
-            const formData = new FormData();
-            formData.append('postId', postId);
-            formData.append('username', username);
-            formData.append('today', today);
-            formData.append('commentinput', commentinput);
-            const response = await fetch('http://christineyewonkim.com/addComments.php', {
-                method: 'POST',
-                body: formData,
+    const fetchPostData = () => {
+        fetch('http://christineyewonkim.com/getPosts.php')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data); // Log the fetched data
+                setPost(data[postId]);
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
             });
-        
-            const data = await response.text();
-            console.log(data);
-        }
     };
-    function getDate() {
-        const today = new Date();
-        const month = today.getMonth() + 1;
-        const year = today.getFullYear();
-        const date = today.getDate();
-        return `${month}/${date}/${year}`;
-    }
 
+    const fetchComments = () => {
+        fetch('http://christineyewonkim.com/getComments.php')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data); // Log the fetched data
+                setComments(data[postId]?.comments || []);
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+    };
     const handleNext = () => {
         setCurrentImageIndex(prevIndex => {
-            const totalImages = postPictures.length;
+            const totalImages = post.picture.length;
             let nextIndex = (prevIndex + 1) % totalImages;
-        
-            // Keep incrementing until a valid image is found or we've looped once
+
             let iterations = 0;
-            while (!postPictures[nextIndex] && iterations < totalImages) {
+            while (!post.picture[nextIndex] && iterations < totalImages) {
                 nextIndex = (nextIndex + 1) % totalImages;
                 iterations++;
             }
-        
-            // If iterations equals totalImages, it means all images are null, so we reset to zero
+
             if (iterations === totalImages) {
                 nextIndex = 0; // Start from beginning
             }
-        
-            return nextIndex; // Set the new index
+
+            return nextIndex;
         });
-      };
+    };
+    const handleComment = () => {
+        // Add your comment submission logic here
+        console.log("Comment submitted:", commentInput);
+    };
+
     return (
         <div className="PostPage">
             <Helmet>
-                <title>{postHeader}</title>
+                <title>{post.header}</title>
             </Helmet>
             <Link className="backbtn" to={`/blog`}>Go Back</Link>
             <div className="containerr">
                 <div className="blogpage">
-                    <h1>{postHeader}</h1>
-                    <h3>{postDate}</h3>
+                    <h1>{post.header}</h1>
+                    <h3>{post.date}</h3>
                     <div className="themeat">
                         <div className="textt">
-                            {postDetails.map((section, index) => (
+                            {post.body.map((section, index) => (
                                 <div>
-                                    <p>{postDetails[index]}</p>
+                                    <p>{section}</p>
                                 </div>
                             ))}
                         </div>
                         {/* Handle null or valid image src */}
                         <div className="pictureContain">
-                            {postPictures[currentImageIndex] ? (
-                                <img className="lol" src={postPictures[currentImageIndex]} alt={postHeader} />
+                            {post.picture[currentImageIndex] ? (
+                                <img className="lol" src={post.picture[currentImageIndex]} alt={post.header} />
                             ) : null}
-                            {postPictures.length > 1 && (
+                            {post.picture.length > 1 && (
                                 <button className="nextnext" onClick={() => handleNext()}> » </button>
                             )}
                         </div>
@@ -129,11 +113,11 @@ const PostPage = () => {
                 <div className="commentContainer">
                     <form>
                         <div className="commentinput">
-                            <TypingField className="inputt" value={commentinput} onChange={(e) => setComment(e.target.value)} />
-                            <button className="comentbtn">Comment</button>
+                            <TypingField className="inputt" value={commentInput} onChange={(e) => setCommentInput(e.target.value)} />
+                            <button className="comentbtn" onClick={handleComment}>Comment</button>
                         </div>
                     </form>
-                    {curr.map((comment, index) => (
+                    {comments.map((comment, index) => (
                         <div className="commentsection">
                             {/* Handle null or valid image src */}
                             {comment != null ? (

@@ -6,45 +6,9 @@ import $ from "jquery";
 import { Helmet } from 'react-helmet';
 import TypingField from "./../components/TextInput/TypingField.tsx";
 
-var posts;
-fetch('http://christineyewonkim.com/getPosts.php')
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then(data => {
-    // Process the JSON data here
-    console.log(data); // This will log the array of dictionaries to the console
-    posts = data;
-  })
-  .catch(error => {
-    console.error('There was a problem with the fetch operation:', error);
-  });
-
-var projects;
-fetch('http://christineyewonkim.com/getProjects.php')
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then(data => {
-    // Process the JSON data here
-    console.log(data); // This will log the array of dictionaries to the console
-    projects = data;
-  })
-  .catch(error => {
-    console.error('There was a problem with the fetch operation:', error);
-  });
-
 
 const MAX_COUNT = 5;
 //Change to recents
-var highlights = [];
-
 export function setLoggedInUser(user) {
     localStorage.setItem('loggedInUser', JSON.stringify(user));
 }
@@ -60,7 +24,6 @@ export function clearLoggedInUser() {
     localStorage.removeItem('loggedInUser');
 }
 
-export { posts, projects, highlights };
 const Login = () => {
     const [loggedInUser, setLoggedInUserState] = useState(null);
     useEffect(() => {
@@ -100,12 +63,11 @@ const Login = () => {
       }
     const handleLogin = () => {
         if (username === "admin" && password === "admin") {
-            setShowPopup(true);
             setLoggedInUser(username);
             setLoggedInUserState(username);
             setUsername("");
             setPassword("");
-            
+            setShowPopup(true);
         } else {
             setShowPopup(false);
             if (!userExists(username, password, dataArray)) {
@@ -217,13 +179,7 @@ const Login = () => {
                     <h3>{getLoggedInUser()}</h3>
                     <button className="addProjectBtn" onClick={handleLogout}>Log out</button>
                 </div>)}
-            {getLoggedInUser() == null ? (
-            <div className="loginContain">
-                <input className="usernameLogin" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)}/>
-                <input className="passwordLogin" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-                <div className="buttonContain">
-                    <button className="submitBtn" onClick={handleLogin}>Log in</button>
-                    {showPopup && (
+                {showPopup && (
                         <Popup open={showPopup} onClose={() => setShowPopup(false)} modal>
                             <div>
                                 <div className="popupContainer">
@@ -316,6 +272,12 @@ const Login = () => {
                             </div>
                         </Popup>
                     )}
+            {getLoggedInUser() == null ? (
+            <div className="loginContain">
+                <input className="usernameLogin" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)}/>
+                <input className="passwordLogin" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                <div className="buttonContain">
+                    <button className="submitBtn" onClick={handleLogin}>Log in</button>
                     <Popup className='important' trigger={<button className="noAccountYet">Register</button>} modal nested>
                         {
                             close => (

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { posts, projects } from "./login.js"
+
 import './css/index.css';
 import { Helmet } from 'react-helmet'
  
