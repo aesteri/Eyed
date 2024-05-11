@@ -23,16 +23,52 @@ fetch('http://christineyewonkim.com/getPosts.php')
     console.error('There was a problem with the fetch operation:', error);
   });
 
+var projects;
+fetch('http://christineyewonkim.com/getProjects.php')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    // Process the JSON data here
+    console.log(data); // This will log the array of dictionaries to the console
+    projects = data;
+  })
+  .catch(error => {
+    console.error('There was a problem with the fetch operation:', error);
+  });
+
+
 const MAX_COUNT = 5;
 //Change to recents
 var highlights = [];
 
-var projects = [{"header": "Project", "body":"project description and I like li liek like lei ke i nad yeah thats funny omg hahahahhaha liemp pteuim", "picture":["/pictures/flower.png", "/pictures/meandstacy.png"], "link":"google.com", "date": "2023"},
-     {"header": "Poo poo", "body":"project description", "picture": [null], "link":"google.com", "date":"2022"}];
+export function setLoggedInUser(user) {
+    localStorage.setItem('loggedInUser', JSON.stringify(user));
+}
 
+// Function to get the logged-in user from local storage
+export function getLoggedInUser() {
+    const userJson = localStorage.getItem('loggedInUser');
+    return userJson ? JSON.parse(userJson) : null;
+}
+
+// Function to clear the logged-in user from local storage
+export function clearLoggedInUser() {
+    localStorage.removeItem('loggedInUser');
+}
 
 export { posts, projects, highlights };
 const Login = () => {
+    const [loggedInUser, setLoggedInUserState] = useState(null);
+    useEffect(() => {
+        // Get the logged-in user from local storage when the component mounts
+        const user = getLoggedInUser();
+        setLoggedInUserState(user);
+    }, []);
+   
 
     const [dataArray, setDataArray] = useState([]);
     const [username, setUsername] = useState('');
@@ -65,12 +101,29 @@ const Login = () => {
     const handleLogin = () => {
         if (username === "admin" && password === "admin") {
             setShowPopup(true);
+            setLoggedInUser(username);
+            setLoggedInUserState(username);
+            setUsername("");
+            setPassword("");
+            
         } else {
             setShowPopup(false);
             if (!userExists(username, password, dataArray)) {
                 alert("Invalid credentials");
+            } else {
+                setLoggedInUser(username);
+                setLoggedInUserState(username);
             }
+            setUsername("");
+            setPassword("");
+            window.location.reload();
         }
+    };
+    const handleLogout = () => {
+        // Clear the logged-in user from local storage
+        clearLoggedInUser();
+        setLoggedInUserState(null);
+        window.location.reload();
     };
     const handleRegister = () => {
        if (usernameExists(uusername, dataArray)) {
@@ -81,6 +134,7 @@ const Login = () => {
             return;
        } else {
             handleSQLuser();
+            window.location.reload();
        }
     };
     const handleSQLuser = async () => {
@@ -155,9 +209,15 @@ const Login = () => {
     return (
         <div className="Login">
             <Helmet>
-                <title>Login</title>
+                <title>{getLoggedInUser() == null ? "Login" : "Profile"}</title>
             </Helmet>
-            <h1 className="loginText">Login</h1>
+            <h1 className="loginText">{getLoggedInUser() == null ? "Login" : "Profile"}</h1>
+            {getLoggedInUser() == null ? null : (
+                <div>
+                    <h3>{getLoggedInUser()}</h3>
+                    <button className="addProjectBtn" onClick={handleLogout}>Log out</button>
+                </div>)}
+            {getLoggedInUser() == null ? (
             <div className="loginContain">
                 <input className="usernameLogin" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)}/>
                 <input className="passwordLogin" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
@@ -275,9 +335,47 @@ const Login = () => {
                     </Popup>
                 </div>
             </div>
+            ): null}
+            <div className="catt">
+                <div class="main">
+                    <span class="stand"></span>
+                    <div class="cat">
+                    <div class="body"></div>
+                    <div class="head">
+                    <div class="ear"></div>
+                    <div class="ear"></div>
+                    </div>
+                    <div class="face">
+                    <div class="nose"></div>
+                    <div class="whisker-container">
+                    <div class="whisker"></div>
+                    <div class="whisker"></div>
+                    </div>
+                    <div class="whisker-container">
+                    <div class="whisker"></div>
+                    <div class="whisker"></div>
+                    </div>
+                    </div>
+                    <div class="tail-container">
+                    <div class="tail">
+                        <div class="tail">
+                        <div class="tail">
+                            <div class="tail">
+                            <div class="tail">
+                                <div class="tail">
+                                <div class="tail"></div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
         </div>
     );
 };
-
 
 export default Login;

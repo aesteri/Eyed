@@ -14,6 +14,7 @@ export const Nav = styled.nav`
 
   @media (max-width: 768px) {
     padding: 0.2rem; /* Adjust padding for smaller screens */
+    height: 50px
   }
 `;
 

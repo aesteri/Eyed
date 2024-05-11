@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import { highlights } from "./login.js";
 import './css/about.css';
 import { Helmet } from 'react-helmet'
+import { setLoggedInUser, getLoggedInUser, clearLoggedInUser } from './login.js';
+
 
  
 const About = () => {
+    console.log(getLoggedInUser());
     
     return (
         <div className="About">
@@ -35,7 +38,7 @@ const About = () => {
                         I spend most of my time working on software for Hytech Racing.
                         In my free time, though, I love baking! I love to bake cookies and macarons to anything like making bread from scratch and baking cake. 
                     </p>
-                    <a href="https://www.instagram.com/ddalgi_caeku" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.instagram.com/ddalgi_patissiere/" target="_blank" rel="noopener noreferrer">
                         Follow me along my journey in being a part-time pâtissière! 
                     </a>.
                 </div>

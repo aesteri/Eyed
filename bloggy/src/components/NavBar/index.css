@@ -88,18 +88,21 @@
     -webkit-tap-highlight-color: transparent;
     padding: 20px;
     top: 0;
-    width: 5%;
+    width: 7%;
+    
   }
 }
 .hamburger .line{
-  width: 20 px;
+  width: 80%;
   height: 5px;
+  
   background-color: gray;
   display: block;
-  margin: 8px auto;
+  margin: 2px auto;
   -webkit-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+
 }
 
 .hamburger:hover{
@@ -117,6 +120,7 @@
   -ms-transform: translateY(13px) rotate(45deg);
   -o-transform: translateY(13px) rotate(45deg);
   transform: translateY(13px) rotate(45deg);
+  margin: 8px auto;
 }
 
 .hamburger.is-active .line:nth-child(3){
@@ -124,4 +128,5 @@
   -ms-transform: translateY(-13px) rotate(-45deg);
   -o-transform: translateY(-13px) rotate(-45deg);
   transform: translateY(-13px) rotate(-45deg);
+  margin: 8px auto;
 }

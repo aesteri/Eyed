@@ -11,11 +11,26 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 $sql = "SELECT 
-CONCAT('{"header": "', title, '", ',
-    '"body": "', body, '", ',
-    '"picture": ["', image1, '", "', image2, '","', image3, '", "', image4, '""', image5, '"], ',
-    '"date": "', date, '", ', '"link": "', link, '"}') AS json_data
+CONCAT('{\"header\": \"', title, '\", ',
+    '\"body\": \"', body, '\", ',
+    '\"picture\": ',
+    IF(img1 IS NULL AND img2 IS NULL AND img3 IS NULL AND img4 IS NULL AND img5 IS NULL,
+        '[]', 
+        CONCAT('[', 
+            CONCAT_WS(',', 
+                IF(img1 IS NOT NULL, CONCAT('\"', img1, '\"'), NULL),
+                IF(img2 IS NOT NULL, CONCAT('\"', img2, '\"'), NULL),
+                IF(img3 IS NOT NULL, CONCAT('\"', img3, '\"'), NULL),
+                IF(img4 IS NOT NULL, CONCAT('\"', img4, '\"'), NULL),
+                IF(img5 IS NOT NULL, CONCAT('\"', img5, '\"'), NULL)
+            ),
+            ']'
+        )
+    ),
+    ', ',
+    '\"date\": \"', date, '\", ', '\"link\": \"', link, '\"}') AS json_data
 FROM projects";
+
 
 $result = $conn->query($sql);
 

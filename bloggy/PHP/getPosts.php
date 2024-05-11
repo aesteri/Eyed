@@ -13,7 +13,21 @@ if ($conn->connect_error) {
 $sql = "SELECT 
 CONCAT('{\"header\": \"', title, '\", ',
     '\"body\": [\"', REPLACE(body, 'AAAA', '\", \"'), '\"], ',
-    '\"picture\": [\"', image1, '\", \"', image2, '\", \"', image3, '\", \"', image4, '\", \"', image5, '\"], ',
+    '\"picture\": ',
+    IF(image1 IS NULL AND image2 IS NULL AND image3 IS NULL AND image4 IS NULL AND image5 IS NULL,
+        '[]', 
+        CONCAT('[', 
+            CONCAT_WS(',', 
+                IF(image1 IS NOT NULL, CONCAT('\"', image1, '\"'), NULL),
+                IF(image2 IS NOT NULL, CONCAT('\"', image2, '\"'), NULL),
+                IF(image3 IS NOT NULL, CONCAT('\"', image3, '\"'), NULL),
+                IF(image4 IS NOT NULL, CONCAT('\"', image4, '\"'), NULL),
+                IF(image5 IS NOT NULL, CONCAT('\"', image5, '\"'), NULL)
+            ),
+            ']'
+        )
+    ),
+    ', ',
     '\"date\": \"', date, '\", ', '\"tag\": \"', tag, '\"}') AS json_data
 FROM posts";
 

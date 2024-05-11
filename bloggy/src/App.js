@@ -21,7 +21,7 @@ function App() {
     <div className='wholethang'>
       <Router>
           <Navbar className="slay"/>
-          <div className='main'>
+          <div className='mmain'>
             <Routes>
                 <Route exact={true} path="" element={<Home />} />
                 <Route path="/about" element={<About />} />

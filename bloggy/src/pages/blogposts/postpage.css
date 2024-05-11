@@ -164,3 +164,8 @@
     padding: 30px;
     border: 5px solid whitesmoke;
 }
+
+.admin-user {
+    color: rgb(255, 111, 190); /* Change the color to whatever you prefer */
+    /* Add any other styles you want to apply to admin users */
+}

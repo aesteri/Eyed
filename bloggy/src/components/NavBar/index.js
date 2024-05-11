@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Nav, NavLink, NavMenu, SideDrawer, Overlay, Bars} from "./NavBarElements";
 import './index.css';
+import { setLoggedInUser, getLoggedInUser, clearLoggedInUser } from '../../pages/login.js';
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false); /* State to track sidebar visibility */
     const [isActive, setIsActive] = useState(false);
@@ -32,7 +33,7 @@ const Navbar = () => {
                         Project
                     </NavLink>
                     <NavLink className='NavLink' href="#" to="/login" activeStyle>
-                        Log In
+                        {getLoggedInUser() == null ? "Log In" : "Profile"}
                     </NavLink>
                 </NavMenu>
                 <SideDrawer isOpen={isOpen}>
@@ -40,7 +41,7 @@ const Navbar = () => {
                     <NavLink className='NavLink'to="/about" onClick={toggleSidebar}>About</NavLink>
                     <NavLink className='NavLink'to="/blog" onClick={toggleSidebar}>Blog</NavLink>
                     <NavLink className='NavLink'to="/project" onClick={toggleSidebar}>Project</NavLink>
-                    <NavLink className='NavLink'to="/login" onClick={toggleSidebar}>Log In</NavLink>
+                    <NavLink className='NavLink'to="/login" onClick={toggleSidebar}>{getLoggedInUser() == null ? "Log In" : "Profile"}</NavLink>
                 </SideDrawer>
                 <Overlay isOpen={isOpen} onClick={toggleSidebar} /> 
             </Nav>
