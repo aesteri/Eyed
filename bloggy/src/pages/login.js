@@ -113,6 +113,7 @@ const Login = () => {
                         <Popup open={showPopup} onClose={() => setShowPopup(false)} modal>
                             <div>
                                 <div className="popupContainer">
+                                    <h3>section divider = " YEWON "</h3>
                                     <div className="Addpost">
                                         <form id="post0">
                                             <div className="inputs">
