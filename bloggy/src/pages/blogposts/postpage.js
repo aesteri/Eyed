@@ -64,12 +64,12 @@ const PostPage = () => {
                     <h1>{postHeader}</h1>
                     <h3>{postDate}</h3>
                     <div className="themeat">
-                        
                         <div className="textt">
-                            
-                            <p>{postDetails}</p>
-                            <p>{postDetails}</p>
-                            <p>{postDetails}</p>
+                            {postDetails.map((section, index) => (
+                                <div>
+                                    <p>{postDetails[index]}</p>
+                                </div>
+                            ))}
                         </div>
                         {/* Handle null or valid image src */}
                         <div className="pictureContain">

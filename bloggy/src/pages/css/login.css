@@ -80,7 +80,7 @@
 
 .Addpost,
 .Addproject {
-    display: flex;
+    display: block;
     justify-content: center;
 }
 
@@ -129,3 +129,4 @@
 .loginContain {
     margin: 20px;
 }
+
