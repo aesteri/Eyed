@@ -8,13 +8,14 @@ h1 {
 }
 .imageContain {
     overflow: hidden;
-    margin-top: 40px;
     @media (max-width: 600px) {
         margin-top: auto;
     }
 }
+
 .stacy {
-    width: 30%;
+    width: 40%;
+    border: 10px solid whitesmoke;
     @media (max-width: 600px) {
         
         height: auto;

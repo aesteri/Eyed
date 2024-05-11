@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { posts } from "./login.js"
 import './css/blog.css';
+import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet'
 
 const filterByTag = (tag) => {
     if (tag === "all" || tag === "") {
@@ -53,6 +55,9 @@ const Blog = () => {
     const counter = 0;
     return (
         <div className="Blog">
+            <Helmet>
+                <title>Christine's Blog</title>
+            </Helmet>
             <div className="firstContain">
                 <h1>Posts</h1>
                 <div className="tagContain">
@@ -66,19 +71,15 @@ const Blog = () => {
             <div className="grid-layout-post">
                 {filteredPosts.map((post, index) => (
                     <div className="item" key={index}>    
-                        <div className={`postContain ${post.tag}`}>
-                            <h1>{post.header}</h1>
-                            <h3>{post.body}</h3>
+                        <div className={`postContain ${post.tag}`} >
+                            <Link className="yar" to={`/blog/post/${index}`}>{post.header}</Link>
+                            <p>{post.date}</p>
+                            <h3>{post.body.slice(0,50) + " ..."}</h3>
                             {/* Handle null or valid image src */}
                             <div className="pictureContain">
                                 {post.picture[currentImageIndices[index]] ? (
                                     <img src={post.picture[currentImageIndices[index]]} alt={post.header} />
                                 ) : null}
-                                <p>
-                                    {post.picture[currentImageIndices[index]] 
-                                    ? post.picture[currentImageIndices[index]]
-                                    : null}
-                                </p>
                                 {post.picture.length > 1 && (
                                     <button className="nextnext" onClick={() => handleNext(index)}> » </button>
                                 )}

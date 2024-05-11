@@ -28,6 +28,8 @@
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
+    background-color: #D3B1C2;;
+    width: 85%;
 }
 
 .projectContain:hover {
@@ -83,6 +85,11 @@
     text-overflow: ellipsis; /* Adds "..." if text is truncated */
     padding: 10px; /* Optional padding */
 
+}
+
+.projectContain h3 {
+    font-size: 15px;
+    font-weight: lighter;
 }
 
 /* CSS */
@@ -159,4 +166,15 @@
     display: block;
     margin: 5px;
     padding: 5px;
+  }
+  .pictureContain img {
+    width: 150px;
+    border: 5px solid whitesmoke;
+  }
+  .textimg {
+    display: block;
+    text-align: left;
+  }
+  p {
+    margin-left: 10px;
   }

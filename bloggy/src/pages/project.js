@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { projects } from "./login.js"
 import './css/project.css';
+import { Helmet } from 'react-helmet'
 
 const Project = () => {
     const [currentImageIndices, setCurrentImageIndices] = useState(
@@ -17,6 +18,9 @@ const Project = () => {
     const counter = 0;
     return (
         <div className="Projects">
+            <Helmet>
+                <title>Christine's Projects</title>
+            </Helmet>
             <div className="heading">
                 <h1>Projects</h1>
             </div>
@@ -24,8 +28,11 @@ const Project = () => {
                 {projects.map((project, index) => (
                     <div className="item" key={index}>    
                         <div className="projectContain">
-                            <h1>{project.header}</h1>
-                            <h3>{project.body}</h3>
+                            <div className="textimg">
+                                <h1>{project.header}</h1>
+                                <p>{project.date}</p>
+                                <h3>{project.body}</h3>
+                            </div>
                             <div className="pictureContain">
                                 {project.picture[currentImageIndices[index]] ? (
                                     <img src={project.picture[currentImageIndices[index]]} alt={project.header} />

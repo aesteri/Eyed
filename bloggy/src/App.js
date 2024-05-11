@@ -13,6 +13,7 @@ import About from "./pages/about";
 import Blog from "./pages/blog";
 import Project from "./pages/project";
 import Login from './pages/login';
+import PostPage from './pages/blogposts/postpage';
 
 
 function App() {
@@ -22,11 +23,12 @@ function App() {
           <Navbar className="slay"/>
           <div className='main'>
             <Routes>
-                <Route exact path="/" element={<Home />} />
+                <Route exact={true} path="" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/project" element={<Project />} />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/blog/post/:postId" element={<PostPage />} />
             </Routes>
           </div>
           <Footer />

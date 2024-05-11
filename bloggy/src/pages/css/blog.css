@@ -57,12 +57,12 @@
 }
 .grid-layout-post {
   display: grid; /* Enable grid layout */
-  grid-template-columns: repeat(2, 1fr); /* 2 equal-width columns */
+  grid-template-columns: repeat(4, 1fr); /* 2 equal-width columns */
   gap: 20px; /* Space between grid items */
   padding: 20px;
   margin: 10px;
 }
-@media (max-width: 600px) {
+@media (max-width: 790px) {
   .grid-layout-post {
     grid-template-columns: 1fr; /* Change to one column for mobile */
     gap: 10px; /* Optionally adjust the gap for mobile */
@@ -82,7 +82,7 @@
   text-align: center;
 }
 
-.postContain h1, .postContain h3 {
+.yar, .postContain h3, .postContain p {
   overflow-wrap: break-word; /* Ensures text breaks into new lines */
   white-space: normal; /* Allows text wrapping */
   overflow: hidden; /* Prevents horizontal scrolling */
@@ -244,4 +244,24 @@
 
 .nextnext:disabled {
   box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.yar {
+  color: #362417;
+  text-decoration: solid;
+  font-weight: bold;
+  font-size: 25px;
+  
+}
+.yar:hover {
+  color: #c6feff;
+}
+
+.postContain img {
+  width: 100px;
+  border: 5px solid whitesmoke;
+}
+.postContain h3 {
+  font-size: 15px;
+  font-weight: lighter;
 }

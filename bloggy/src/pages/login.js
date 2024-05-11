@@ -2,18 +2,19 @@ import React, { useEffect, useState } from "react";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import './css/login.css';
-import flower from './pictures/flower.png';
+import { Helmet } from 'react-helmet'
 
-var posts = [{"header": "Strawberry cakes", "body": "today I made some really good bread. i made soe cake! yaya. This is filler. Idk what else to say but I hope it is long im tiredaf too fuckkkkfsidfusdf but no cussing allowed fosho", "picture": [null], "tag": "baking"},
-        {"header": "jahjah", "body": "kaka", "picture": ["yuh.png", null, "slay.png"], "tag": "hytech"},
-        {"header": "jahjah", "body": "kaka", "picture": ["yuh.png", null, "slay.png"], "tag": "exchange24"},
-        {"header": "jahjah", "body": "kaka", "picture": ["yuh.png", null, "slay.png"], "tag": "gatech"}];
+var posts = [{"header": "Strawberry cakes", "body": "today I made some really good bread.today I made some really good bread. i made soe cake! yaya. This is filler. Idk what etoday I made some really good bread. i made soe cake! yaya. This is filler. Idk what etoday I made some really good bread. i made soe cake! yaya. This is filler. Idk what e i made soe cake! yaya. This is filler. Idk what else to say but I hope it is long im tiredaf too fuckkkkfsidfusdf but no cussing allowed fosho", "picture": [null], "tag": "baking", "date": "May 10, 2024"},
+        {"header": "Hytech late night", "body": "kaktoday I made some really good bread. i made soe cake! yaya. This is filler. Idk what etoday I made some really good bread. i made soe cake! yaya. This is filler. Idk what etoday I made some really good bread. i made soe cake! yaya. This is filler. Idk what etoday I made some really good bread. i made soe cake! yaya. This is filler. Idk what ea", "picture": ["/pictures/flower.png", null, "/pictures/flowerbasket.png"], "tag": "hytech", "date": "May 5, 2024"},
+        {"header": "I spilled the milk", "body": "katoday I made some really good bread. i made soe cake! yaya. This is filler. Idk what etoday I made some really good bread. i made soe cake! yaya. This is filler. Idk what etoday I made some really good bread. i made soe cake! yaya. This is filler. Idk what etoday I made some really good bread. i made soe cake! yaya. This is filler. Idk what etoday I made some really good bread. i made soe cake! yaya. This is filler. Idk what etoday I made some really good bread. i made soe cake! yaya. This is filler. Idk what ea", "picture": ["/pictures/meandstacy.png", null, "/pictures/flower.png"], "tag": "exchange24", "date": "May 3, 2024"},
+        {"header": "A day with me at my internship", "body": "kaka", "picture": ["/pictures/meandstacy.png", null, "/pictures/flower.png"], "tag": "gatech", "date": "May 5, 2024"}];
 var about = []; 
 const MAX_COUNT = 5;
 //Change to recents
 var highlights = [];
 
-var projects = [{"header": "Project", "body":"project description and I like li liek like lei ke i nad yeah thats funny omg hahahahhaha liemp pteuim", "picture":["yuh.png", "slay.png"], "link":"google.com"}, {"header": "Poo poo", "body":"project description", "picture": [null], "link":"google.com"}];
+var projects = [{"header": "Project", "body":"project description and I like li liek like lei ke i nad yeah thats funny omg hahahahhaha liemp pteuim", "picture":["/pictures/flower.png", "/pictures/meandstacy.png"], "link":"google.com", "date": "2023"},
+     {"header": "Poo poo", "body":"project description", "picture": [null], "link":"google.com", "date":"2022"}];
 var currentUser = [];
 
 
@@ -70,6 +71,9 @@ const Login = () => {
     }
     return (
         <div className="Login">
+            <Helmet>
+                <title>Login</title>
+            </Helmet>
             <h1 className="loginText">Login</h1>
             <div className="loginContain">
                 <input className="usernameLogin" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)}/>

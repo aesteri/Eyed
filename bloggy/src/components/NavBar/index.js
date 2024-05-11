@@ -19,7 +19,7 @@ const Navbar = () => {
                     <span class="line"></span>
                 </div>
                 <NavMenu className='NavMenu'>
-                    <NavLink className='NavLink' href="#" to="/index" activeStyle>
+                    <NavLink className='NavLink' href="#" to="/" activeStyle>
                         Home
                     </NavLink>
                     <NavLink className='NavLink' href="#" to="/about" activeStyle>
@@ -36,7 +36,7 @@ const Navbar = () => {
                     </NavLink>
                 </NavMenu>
                 <SideDrawer isOpen={isOpen}>
-                    <NavLink className='NavLink'to="/index" onClick={toggleSidebar}>Home</NavLink>
+                    <NavLink className='NavLink'to="/" onClick={toggleSidebar}>Home</NavLink>
                     <NavLink className='NavLink'to="/about" onClick={toggleSidebar}>About</NavLink>
                     <NavLink className='NavLink'to="/blog" onClick={toggleSidebar}>Blog</NavLink>
                     <NavLink className='NavLink'to="/project" onClick={toggleSidebar}>Project</NavLink>

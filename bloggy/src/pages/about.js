@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 import { highlights } from "./login.js";
 import './css/about.css';
-import stacy from './pictures/meandstacy.png';
+import { Helmet } from 'react-helmet'
 
  
 const About = () => {
     
     return (
         <div className="About">
+            <Helmet>
+                <title>About Christine</title>
+            </Helmet>
             <h1>
                 About Me
             </h1>
             <div className="first">
                 <div className="imageContain">
-                    <img className="stacy" src={stacy}/>
+                    <img className="stacy" src='/pictures/meandstacy.png'/>
+            
                 </div>
                 <div className="aboutSection">
                     <p>
