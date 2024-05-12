@@ -21,7 +21,7 @@ const PostPage = () => {
     }, []);
 
     const fetchPostData = () => {
-        fetch('http://christineyewonkim.com/getPosts.php')
+        fetch('https://christineyewonkim.com/PHP/getPosts.php')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -29,7 +29,7 @@ const PostPage = () => {
                 return response.json();
             })
             .then(data => {
-                console.log(data); // Log the fetched data
+                //console.log(data); // Log the fetched data
                 setPost(data[postId]);
             })
             .catch(error => {
@@ -38,7 +38,7 @@ const PostPage = () => {
     };
 
     const fetchComments = () => {
-        fetch('http://christineyewonkim.com/getComments.php')
+        fetch('https://christineyewonkim.com/PHP/getComments.php')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -46,7 +46,7 @@ const PostPage = () => {
                 return response.json();
             })
             .then(data => {
-                console.log(data); // Log the fetched data
+                //console.log(data); // Log the fetched data
                 setComments(data[postId]?.comments || []);
             })
             .catch(error => {
@@ -77,7 +77,7 @@ const PostPage = () => {
     const handleHideComments = () => {
         setShowAllComments(false);
     };
-    const visibleComments = showAllComments ? comments : comments.slice(0, 1); // Show only 5 comments initially
+    const visibleComments = showAllComments ? comments : comments.slice(0, 2); // Show only 5 comments initially
     const handleComment = (e) => {
         e.preventDefault();
         if (commentInput === null || commentInput === '') {
@@ -105,7 +105,7 @@ const PostPage = () => {
             formData.append('today', today);
             formData.append('commentinput', commentinput);
             
-            const response = await fetch('http://christineyewonkim.com/addComments.php', {
+            const response = await fetch('https://christineyewonkim.com/PHP/addComments.php', {
                 method: 'POST',
                 body: formData,
             });
@@ -115,7 +115,7 @@ const PostPage = () => {
             }
     
             const data = await response.text();
-            console.log(data);
+            //console.log(data);
             fetchComments();
         } catch (error) {
             console.error('Error submitting comment:', error);

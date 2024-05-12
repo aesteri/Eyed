@@ -48,7 +48,7 @@
     padding: 20px;
     margin: 10px;
 }
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     .grid-layout {
       grid-template-columns: 1fr; /* Change to one column for mobile */
       gap: 10px; /* Optionally adjust the gap for mobile */
@@ -78,12 +78,20 @@
     font-size: 1rem;
     
 }
-.projectContain h1, .projectContain h3 {
-    overflow-wrap: break-word; /* Ensures text breaks into new lines */
+ .projectContain h3 {
+    overflow-wrap:normal; /* Ensures text breaks into new lines */
     white-space: normal; /* Allows text wrapping */
     overflow: hidden; /* Prevents horizontal scrolling */
     text-overflow: ellipsis; /* Adds "..." if text is truncated */
-    padding: 10px; /* Optional padding */
+     /* Optional padding */
+     padding: 10px;
+     @media (max-width: 800px) {
+      padding: 2px;
+      }
+}
+.projectContain h1{
+  width: 100%;
+  margin-left: 10px;
 
 }
 

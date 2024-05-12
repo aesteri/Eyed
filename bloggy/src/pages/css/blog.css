@@ -62,7 +62,7 @@
   padding: 20px;
   margin: 10px;
 }
-@media (max-width: 790px) {
+@media (max-width: 830px) {
   .grid-layout-post {
     grid-template-columns: 1fr; /* Change to one column for mobile */
     gap: 10px; /* Optionally adjust the gap for mobile */

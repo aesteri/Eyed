@@ -10,7 +10,7 @@ const Project = () => {
       );
 
       useEffect(() => {
-        fetch('/PHP/getProjects.php')
+        fetch('https://christineyewonkim.com/PHP/getProjects.php')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -19,7 +19,7 @@ const Project = () => {
             })
             .then(data => {
                 // Process the JSON data here
-                console.log(data); // This will log the array of dictionaries to the console
+                //console.log(data); // This will log the array of dictionaries to the console
                 setProjects(data);
                 setCurrentImageIndices(Array(data.length).fill(0));
             })

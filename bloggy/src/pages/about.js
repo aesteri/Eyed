@@ -7,7 +7,7 @@ import { setLoggedInUser, getLoggedInUser, clearLoggedInUser } from './login.js'
 
  
 const About = () => {
-    console.log(getLoggedInUser());
+    //console.log(getLoggedInUser());
 
     return (
         <div className="About">

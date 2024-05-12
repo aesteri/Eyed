@@ -67,7 +67,7 @@ const Login = () => {
 
     useEffect(() => {
         // Fetch data from PHP script
-        fetch('/PHP/getUsers.php')
+        fetch('https://christineyewonkim.com/PHP/getUsers.php')
           .then(response => response.json())
           .then(data => setDataArray(data))
           .catch(error => console.error('Error fetching data:', error));
@@ -142,7 +142,7 @@ const Login = () => {
             formData.append('date', date);
             formData.append('tag', selectedTag);
             
-            const response = await fetch('/PHP/addPost.php', {
+            const response = await fetch('https://christineyewonkim.com/PHP/addPost.php', {
                 method: 'POST',
                 body: formData,
             });
@@ -152,7 +152,7 @@ const Login = () => {
             }
     
             const data = await response.text();
-            console.log(data);
+            //console.log(data);
         } catch (error) {
             console.error('Error submitting project:', error);
         }
@@ -174,7 +174,7 @@ const Login = () => {
             formData.append('date', date);
             formData.append('link', link);
             
-            const response = await fetch('/PHP/addProject.php', {
+            const response = await fetch('https://christineyewonkim.com/PHP/addProject.php', {
                 method: 'POST',
                 body: formData,
             });
@@ -184,7 +184,7 @@ const Login = () => {
             }
     
             const data = await response.text();
-            console.log(data);
+            //console.log(data);
         } catch (error) {
             console.error('Error submitting project:', error);
         }
@@ -207,13 +207,13 @@ const Login = () => {
         const formData = new FormData();
         formData.append('uusername', uusername);
         formData.append('ppassword', ppassword);
-        const response = await fetch('/PHP/addUsers.php', {
+        const response = await fetch('https://christineyewonkim.com/PHP/addUsers.php', {
           method: 'POST',
           body: formData,
         });
     
         const data = await response.text();
-        console.log(data);
+        //console.log(data);
       };
     return (
         <div className="Login">
