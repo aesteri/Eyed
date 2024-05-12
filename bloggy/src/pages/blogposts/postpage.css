@@ -169,3 +169,8 @@
     color: rgb(255, 111, 190); /* Change the color to whatever you prefer */
     /* Add any other styles you want to apply to admin users */
 }
+.thetea {
+    justify-content: center;
+    display: block;
+    text-align: center;
+}

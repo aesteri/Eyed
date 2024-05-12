@@ -74,16 +74,19 @@ const PostPage = () => {
     const handleViewAllComments = () => {
         setShowAllComments(!showAllComments);
     };
+    const handleHideComments = () => {
+        setShowAllComments(false);
+    };
     const visibleComments = showAllComments ? comments : comments.slice(0, 1); // Show only 5 comments initially
     const handleComment = (e) => {
         e.preventDefault();
         if (commentInput === null || commentInput === '') {
             alert('You need to write something!');
-        } else if (!(getLoggedInUser === null)) {
+        } else if ((getLoggedInUser() === null || getLoggedInUser() === '')) {
+            alert("You need an account!");
+        } else {
             handleSQLComment();
             setCommentInput('');
-        } else {
-            alert("You need an account!");
         }
     };
     const handleSQLComment = async () => {
@@ -159,30 +162,33 @@ const PostPage = () => {
                             <button className="comentbtn" onClick={(e) => handleComment(e)}>Comment</button>
                         </div>
                     </form>
-
-                    {visibleComments.map((comment, index) => (
-                        <div className="commentsection">
-                            {/* Handle null or valid image src */}
-                            {comment != null ? (
-                                <div className="commentyar">
-                                    <div class="userId">
-                                        <h3 className={comment.user === 'admin' ? 'admin-user' : ''}>{comment.user}</h3>
-                                        <h4>{comment.date}</h4>
+                    <div className="thetea">
+                        {visibleComments.map((comment, index) => (
+                            <div className="commentsection">
+                                {/* Handle null or valid image src */}
+                                {comment != null ? (
+                                    <div className="commentyar">
+                                        <div class="userId">
+                                            <h3 className={comment.user === 'admin' ? 'admin-user' : ''}>{comment.user}</h3>
+                                            <h4>{comment.date}</h4>
+                                        </div>
+                                        <h4>{comment.comment}</h4>
                                     </div>
-                                    <h4>{comment.comment}</h4>
-                                </div>
-                            ) : (
-                                <div className="null">
-                                    <h4>Be the first to comment!</h4>
-                                </div>
-                            )}
-                        </div>
-                    ))}
-                    {/* Button to toggle showing all comments */}
-                    {!showAllComments && comments.length > 2 && (
-                        <button className="comentbtn" onClick={handleViewAllComments}>View All Comments</button>
-                    )}
-                    
+                                ) : (
+                                    <div className="null">
+                                        <h4>Be the first to comment!</h4>
+                                    </div>
+                                )}
+                            </div>
+                        ))}
+                        {/* Button to toggle showing all comments */}
+                        {!showAllComments && comments.length > 2 && (
+                            <button className="comentbtn" onClick={handleViewAllComments}>View All Comments</button>
+                        )}
+                        {showAllComments && (
+                            <button className="comentbtn" onClick={handleHideComments}>Hide Comments</button>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>
