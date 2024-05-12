@@ -67,7 +67,7 @@ const Login = () => {
 
     useEffect(() => {
         // Fetch data from PHP script
-        fetch('http://christineyewonkim.com/getUsers.php')
+        fetch('https://christineyewonkim.com/getUsers.php')
           .then(response => response.json())
           .then(data => setDataArray(data))
           .catch(error => console.error('Error fetching data:', error));
@@ -142,7 +142,7 @@ const Login = () => {
             formData.append('date', date);
             formData.append('tag', selectedTag);
             
-            const response = await fetch('http://christineyewonkim.com/addPost.php', {
+            const response = await fetch('https://christineyewonkim.com/addPost.php', {
                 method: 'POST',
                 body: formData,
             });
@@ -161,7 +161,7 @@ const Login = () => {
         try {
             const formData = new FormData();
             const current = new Date();
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const options = { year: 'numeric' };
             const date = current.toLocaleDateString('en-US', options);
             
             formData.append('title', projecttitle);
@@ -174,7 +174,7 @@ const Login = () => {
             formData.append('date', date);
             formData.append('link', link);
             
-            const response = await fetch('http://christineyewonkim.com/addProject.php', {
+            const response = await fetch('https://christineyewonkim.com/addProject.php', {
                 method: 'POST',
                 body: formData,
             });
@@ -207,7 +207,7 @@ const Login = () => {
         const formData = new FormData();
         formData.append('uusername', uusername);
         formData.append('ppassword', ppassword);
-        const response = await fetch('http://christineyewonkim.com/addUsers.php', {
+        const response = await fetch('https://christineyewonkim.com/addUsers.php', {
           method: 'POST',
           body: formData,
         });

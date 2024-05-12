@@ -19,7 +19,7 @@ const Blog = () => {
     }, [posts]);
 
     const fetchPosts = () => {
-        fetch('http://christineyewonkim.com/getPosts.php')
+        fetch('https://christineyewonkim.com/getPosts.php')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
