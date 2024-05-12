@@ -9,12 +9,12 @@ import TypingField from "../../components/TextInput/TypingField.tsx";
 
 const PostPage = () => {
     const [commentInput, setCommentInput] = useState('');
+    const [showAllComments, setShowAllComments] = useState(false);
     const [comments, setComments] = useState([]);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [post, setPost] = useState({ header: "", body: [], date: "", picture: [] });
 
     const { postId } = useParams();
-
     useEffect(() => {
         fetchPostData();
         fetchComments();
@@ -71,11 +71,53 @@ const PostPage = () => {
             return nextIndex;
         });
     };
-    const handleComment = () => {
-        // Add your comment submission logic here
-        console.log("Comment submitted:", commentInput);
+    const handleViewAllComments = () => {
+        setShowAllComments(!showAllComments);
     };
-
+    const visibleComments = showAllComments ? comments : comments.slice(0, 1); // Show only 5 comments initially
+    const handleComment = (e) => {
+        e.preventDefault();
+        if (commentInput === null || commentInput === '') {
+            alert('You need to write something!');
+        } else if (!(getLoggedInUser === null)) {
+            handleSQLComment();
+            setCommentInput('');
+        } else {
+            alert("You need an account!");
+        }
+    };
+    const handleSQLComment = async () => {
+        try {
+            const formData = new FormData();
+            const current = new Date();
+            const year = current.getFullYear();
+            const month = current.getMonth() + 1;
+            const day = current.getDate();
+            const today = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`;
+            const username = getLoggedInUser();
+            const commentinput = commentInput;
+            const postIdInt = parseInt(postId, 10);
+            formData.append('postId', postIdInt);
+            formData.append('username', username);
+            formData.append('today', today);
+            formData.append('commentinput', commentinput);
+            
+            const response = await fetch('http://christineyewonkim.com/addComments.php', {
+                method: 'POST',
+                body: formData,
+            });
+    
+            if (!response.ok) {
+                throw new Error('Failed to submit comment');
+            }
+    
+            const data = await response.text();
+            console.log(data);
+            fetchComments();
+        } catch (error) {
+            console.error('Error submitting comment:', error);
+        }
+    };
     return (
         <div className="PostPage">
             <Helmet>
@@ -113,11 +155,12 @@ const PostPage = () => {
                 <div className="commentContainer">
                     <form>
                         <div className="commentinput">
-                            <TypingField className="inputt" value={commentInput} onChange={(e) => setCommentInput(e.target.value)} />
-                            <button className="comentbtn" onClick={handleComment}>Comment</button>
+                            <TypingField className="inputt" value={commentInput} onChange={(newValue) => setCommentInput(newValue)} />
+                            <button className="comentbtn" onClick={(e) => handleComment(e)}>Comment</button>
                         </div>
                     </form>
-                    {comments.map((comment, index) => (
+
+                    {visibleComments.map((comment, index) => (
                         <div className="commentsection">
                             {/* Handle null or valid image src */}
                             {comment != null ? (
@@ -135,6 +178,10 @@ const PostPage = () => {
                             )}
                         </div>
                     ))}
+                    {/* Button to toggle showing all comments */}
+                    {!showAllComments && comments.length > 2 && (
+                        <button className="comentbtn" onClick={handleViewAllComments}>View All Comments</button>
+                    )}
                     
                 </div>
             </div>
