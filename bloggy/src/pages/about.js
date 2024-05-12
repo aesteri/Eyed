@@ -8,7 +8,7 @@ import { setLoggedInUser, getLoggedInUser, clearLoggedInUser } from './login.js'
  
 const About = () => {
     console.log(getLoggedInUser());
-    
+
     return (
         <div className="About">
             <Helmet>
@@ -32,7 +32,7 @@ const About = () => {
                         <a href="https://www.cc.gatech.edu/academics/threads/systems-architecture" target="_blank" rel="noopener noreferrer">
                             Systems Architecture
                         </a>.
-                        I'm a data acquisitions member and acceleration driver for Hytech Racing. I contribute to the software of the car.
+                        I'm also a data acquisitions member and acceleration driver for Hytech Racing. I contribute to the software of the car.
                     </p>
                     <p>
                         I spend most of my time working on software for Hytech Racing.

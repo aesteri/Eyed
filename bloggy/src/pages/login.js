@@ -230,7 +230,7 @@ const Login = () => {
                         <Popup  contentStyle={{ maxHeight: "70vh", overflowY: "auto" }} className="poopy" open={showPopup} onClose={() => setShowPopup(false)} modal>
                             <div className="adminControl">
                                 <div className="popupContainer">
-                                    <h3>section divider = " YEWON "</h3>
+                                    <h3>section divider = "AAAA"</h3>
                                     <div className="Addpost">
                                         <form id="post0">
                                             <div className="inputs">

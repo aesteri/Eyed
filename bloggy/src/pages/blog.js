@@ -84,10 +84,10 @@ const Blog = () => {
                 <h1>Posts</h1>
                 <div className="tagContain">
                     <button className="tag" onClick={() => handleFilter("")}>all</button>
-                    <button className="tag" onClick={() => handleFilter("hytech")}>hytech</button>
-                    <button className="tag" onClick={() => handleFilter("baking")}>baking</button>
-                    <button className="tag" onClick={() => handleFilter("exchange24")}>exchange @ SNU</button>
-                    <button className="tag" onClick={() => handleFilter("gatech")}>gatech</button>
+                    <button className="tag" onClick={() => handleFilter("Hytech")}>hytech</button>
+                    <button className="tag" onClick={() => handleFilter("Baking")}>baking</button>
+                    <button className="tag" onClick={() => handleFilter("Exchange24")}>exchange @ SNU</button>
+                    <button className="tag" onClick={() => handleFilter("Gatech")}>gatech</button>
                 </div>
             </div>
             <div className="grid-layout-post">
@@ -110,6 +110,12 @@ const Blog = () => {
                     </div>
                 ))}
             </div>
+            {posts.length===0 && (
+                    <div className="na">
+                        <h3>No Posts Currently... </h3>
+                        <h4>Come back later!</h4>
+                    </div>
+                )}
         </div>
     )
 };

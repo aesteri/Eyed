@@ -41,18 +41,18 @@
 .postContain:focus {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
-.hytech {
+.Hytech {
   background-color: #D5C6E0;
 }
 
-.baking {
+.Baking {
   background-color: #AAA1C8;
 }
-.exchange24 {
+.Exchange24 {
   background-color: #967AA1;
 }
 
-.gatech {
+.Gatech {
   background-color: #FFD4DB;
 }
 .grid-layout-post {
@@ -255,6 +255,9 @@
 }
 .yar:hover {
   color: #F0F7E0;
+  stroke-dashoffset: 0;
+	transition-timing-function: cubic-bezier(0.8, 1, 0.7, 1);
+	transition-duration: 0.3s;
 }
 
 .postContain img {
@@ -264,4 +267,9 @@
 .postContain h3 {
   font-size: 15px;
   font-weight: lighter;
+}
+.na {
+  text-align: center;
+  display: block;
+  margin: 50px;
 }

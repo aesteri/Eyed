@@ -181,6 +181,11 @@ const PostPage = () => {
                                 )}
                             </div>
                         ))}
+                        {comments.length == 0 && (
+                            <div className="null">
+                                <h4>Be the first to comment!</h4>
+                            </div>
+                        )}
                         {/* Button to toggle showing all comments */}
                         {!showAllComments && comments.length > 2 && (
                             <button className="comentbtn" onClick={handleViewAllComments}>View All Comments</button>
