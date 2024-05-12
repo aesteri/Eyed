@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import './css/login.css';
-import $ from "jquery";
 import { Helmet } from 'react-helmet';
 import TypingField from "./../components/TextInput/TypingField.tsx";
 
@@ -37,10 +36,34 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [showPopup, setShowPopup] = useState(false);
-    const [fileProject, setProjectFile] = useState();
     const [uusername, ssetUsername] = useState('');
     const [ppassword, ssetPassword] = useState('');
     const [repassword, ssetRePassword] = useState('');
+
+
+    //admin
+    const [title, settitle] = useState('');
+    const [postinput, setPostInput] = useState('');
+    const [image1, setimage1] = useState('');
+    const [image2, setimage2] = useState('');
+    const [image3, setimage3] = useState('');
+    const [image4, setimage4] = useState('');
+    const [image5, setimage5] = useState('');
+    const [tag, settag] = useState('');
+    const [selectedTag, setSelectedTag] = useState(""); // State to hold the selected tag value
+    const handleTagSelection = (event) => {
+        setSelectedTag(event.target.value); // Update the selected tag value when a radio button is clicked
+    };
+
+    const [projecttitle, setprojecttitle] = useState('');
+    const [projectinput, setProjectInput] = useState('');
+    const [img1, setimg1] = useState('');
+    const [img2, setimg2] = useState('');
+    const [img3, setimg3] = useState('');
+    const [img4, setimg4] = useState('');
+    const [img5, setimg5] = useState('');
+    const [link, setlink] = useState('');
+
 
     useEffect(() => {
         // Fetch data from PHP script
@@ -49,10 +72,6 @@ const Login = () => {
           .then(data => setDataArray(data))
           .catch(error => console.error('Error fetching data:', error));
       }, []);
-    //variables for post file upload
-    const [uploadedFiles, setUploadedFiles] = useState([])
-    const [uploadeddFiles, setUploadeddFiles] = useState([])
-    const [fileLimit, setFileLimit] = useState(false);
 
     //functions
     function usernameExists(username, userList) {
@@ -61,6 +80,18 @@ const Login = () => {
       function userExists(username, password, userList) {
         return userList.some(user => user.username === username && user.password === password);
       }
+    const handleControls = () => {
+        setShowPopup(true);
+    }
+    const PostUpload = (e) => {
+        e.preventDefault();
+        handlePostUpload();
+    }
+    const ProjectUpload = (e) => {
+        e.preventDefault();
+        handleProjectUpload();
+    }
+
     const handleLogin = () => {
         if (username === "admin" && password === "admin") {
             setLoggedInUser(username);
@@ -87,6 +118,79 @@ const Login = () => {
         setLoggedInUserState(null);
         window.location.reload();
     };
+    const nullHandler = (imageu) => {
+        if (imageu === '' || imageu === null) {
+            return null;
+        } else {
+            return imageu
+        }
+    }
+    const handlePostUpload = async () => {
+        try {
+            const formData = new FormData();
+            const current = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const date = current.toLocaleDateString('en-US', options);
+            
+            formData.append('title', title);
+            formData.append('body', postinput);
+            formData.append('image1', nullHandler(image1));
+            formData.append('image2', nullHandler(image2));
+            formData.append('image3', nullHandler(image3));
+            formData.append('image4', nullHandler(image4));
+            formData.append('image5', nullHandler(image5));
+            formData.append('date', date);
+            formData.append('tag', selectedTag);
+            
+            const response = await fetch('http://christineyewonkim.com/addPost.php', {
+                method: 'POST',
+                body: formData,
+            });
+    
+            if (!response.ok) {
+                throw new Error('Failed to submit project');
+            }
+    
+            const data = await response.text();
+            console.log(data);
+        } catch (error) {
+            console.error('Error submitting project:', error);
+        }
+    };
+    const handleProjectUpload = async () => {
+        try {
+            const formData = new FormData();
+            const current = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const date = current.toLocaleDateString('en-US', options);
+            
+            formData.append('title', projecttitle);
+            formData.append('body', projectinput);
+            formData.append('image1', nullHandler(img1));
+            formData.append('image2', nullHandler(img2));
+            formData.append('image3', nullHandler(img3));
+            formData.append('image4', nullHandler(img4));
+            formData.append('image5', nullHandler(img5));
+            formData.append('date', date);
+            formData.append('link', link);
+            
+            const response = await fetch('http://christineyewonkim.com/addProject.php', {
+                method: 'POST',
+                body: formData,
+            });
+    
+            if (!response.ok) {
+                throw new Error('Failed to submit project');
+            }
+    
+            const data = await response.text();
+            console.log(data);
+        } catch (error) {
+            console.error('Error submitting project:', error);
+        }
+    };
+
+
     const handleRegister = () => {
        if (usernameExists(uusername, dataArray)) {
          alert("Username Taken");
@@ -111,63 +215,6 @@ const Login = () => {
         const data = await response.text();
         console.log(data);
       };
-    const handleFileEvent =  (e) => {
-        const chosenFiles = Array.prototype.slice.call(e.target.files)
-        handleUploadFiles(chosenFiles);
-    }
-    const hhandleFileEvent =  (e) => {
-        const chosenFiles = Array.prototype.slice.call(e.target.files)
-        hhandleUploadFiles(chosenFiles);
-    }
-    const handleUploadFiles = files => {
-        const uploaded = [...uploadedFiles];
-        let limitExceeded = false;
-        files.some((file) => {
-            if (uploaded.findIndex((f) => f.name === file.name) === -1) {
-                uploaded.push(file);
-            }
-            if (uploaded.length === MAX_COUNT) setFileLimit(true);
-            if (uploaded.length > MAX_COUNT) {
-                alert('nah bro');
-                setFileLimit(false);
-                limitExceeded = true;
-                return true;
-            }
-        })
-        if (!limitExceeded) setUploadedFiles(uploaded)
-    }
-
-    const hhandleUploadFiles = files => {
-        const uploaded = [...uploadeddFiles];
-        let limitExceeded = false;
-        files.some((file) => {
-            if (uploaded.findIndex((f) => f.name === file.name) === -1) {
-                uploaded.push(file);
-            }
-            if (uploaded.length === MAX_COUNT) setFileLimit(true);
-            if (uploaded.length > MAX_COUNT) {
-                alert('nah bro');
-                setFileLimit(false);
-                limitExceeded = true;
-                return true;
-            }
-        })
-        if (!limitExceeded) setUploadeddFiles(uploaded)
-    }
-    const deleteFile = (fileId) => {
-        // Update the state to remove the file with the given ID
-        const updatedFiles = uploadedFiles.filter((file) => file.id !== fileId);
-        setUploadedFiles(updatedFiles);
-      };
-      const ddeleteFile = (fileId) => {
-        // Update the state to remove the file with the given ID
-        const updatedFiles = uploadeddFiles.filter((file) => file.id !== fileId);
-        setUploadeddFiles(updatedFiles);
-      };
-    function handlePicProject(e) {
-        console.log(e.target.files);
-        setProjectFile(URL.createObjectURL(e.target.files[0]));
-    }
     return (
         <div className="Login">
             <Helmet>
@@ -180,91 +227,61 @@ const Login = () => {
                     <button className="addProjectBtn" onClick={handleLogout}>Log out</button>
                 </div>)}
                 {showPopup && (
-                        <Popup open={showPopup} onClose={() => setShowPopup(false)} modal>
-                            <div>
+                        <Popup  contentStyle={{ maxHeight: "70vh", overflowY: "auto" }} className="poopy" open={showPopup} onClose={() => setShowPopup(false)} modal>
+                            <div className="adminControl">
                                 <div className="popupContainer">
                                     <h3>section divider = " YEWON "</h3>
                                     <div className="Addpost">
                                         <form id="post0">
                                             <div className="inputs">
-                                                <input className="PostHeader" placeholder="Add header here"/>
-                                                <TypingField/>
-                                                <input className="date" placeholder="Add date here"/>
+                                                <input className="PostHeader" placeholder="Add header here" value={title} onChange={(event) => settitle(event.target.value)}/>
+                                                <TypingField value={postinput} onChange={(newValue) => setPostInput(newValue)}/>
                                             </div>
                                             <div className="tags">
-                                                <input type="radio" id="html" name="fav_language" value="HTML"/>
-                                                <p className="tag1">Hytech</p>
-                                                <input type="radio" id="html" name="fav_language" value="HTML"/>
-                                                <p className="tag1">Baking</p>
-                                                <input type="radio" id="html" name="fav_language" value="HTML"/>
-                                                <p className="tag1">Gatech</p>
-                                                <input type="radio" id="html" name="fav_language" value="HTML"/>
-                                                <p className="tag1">Exchange24</p>
+                                                <p className="tag1">
+                                                <input type="radio" id="html" name="fav_language" value="Hytech" onChange={handleTagSelection}/>
+                                                Hytech</p>
+
+                                                <p className="tag1">
+                                                <input type="radio" id="html" name="fav_language" value="Baking" onChange={handleTagSelection}/>
+                                                Baking</p>
+
+                                                <p className="tag1">
+                                                <input type="radio" id="html" name="fav_language" value="Gatech" onChange={handleTagSelection}/>
+                                                Gatech</p>
+
+                                                <p className="tag1">
+                                                <input type="radio" id="html" name="fav_language" value="Exchange24" onChange={handleTagSelection}/>
+                                                Exchange24</p>
                                             </div>
-
-                                            <input id='fileUpload' type='file' multiple
-                                                    accept='application/pdf, image/png'
-                                                    onChange={handleFileEvent}
-                                                    
-                                            />
-
-                                            <label htmlFor='fileUpload'>
-                                                <a  className={`btn btn-primary ${!fileLimit ? '' : 'disabled' } `}>
-                                                    Upload Files
-                                                </a>
-                                            </label>
+                                            <div className="post_imgpath">
+                                                <input className="file1" placeholder="image1" value={image1} onChange={(event) => setimage1(event.target.value)}/>
+                                                <input className="file2" placeholder="image2" value={image2} onChange={(event) => setimage2(event.target.value)}/>
+                                                <input className="file3" placeholder="image3" value={image3} onChange={(event) => setimage3(event.target.value)}/>
+                                                <input className="file4" placeholder="image4" value={image4} onChange={(event) => setimage4(event.target.value)}/>
+                                                <input className="file5" placeholder="image5" value={image5} onChange={(newValue) => setimage5(newValue.target.value)}/>
+                                            </div>
                                             
-                                            <div className="uploaded-files-list">
-                                                {uploadedFiles.map(file => (
-                                                    <div 
-                                                        key={file.id} // Make sure to set a unique key for each item
-                                                        onClick={() => deleteFile(file.id)}
-                                                    >
-                                                        {file.name}
-                                                    </div>
-                                                ))} 
-                                            </div>
                                         </form>
-                                        <button className="addPostBtn">add Post</button>
+                                        <button className="addPostBtn" onClick={(e) => PostUpload(e)}>add Post</button>
                                     </div>
                                     
                                     <div className="Addproject">
                                         <form id="project0">
                                             <div className="inputs">
-                                                <input className="projectHeader" placeholder="Add header here"/>
-                                                <TypingField/>
-                                                <input className="datee" placeholder="Add date here"/>
-                                                <input className="linkk" placeholder="Add link here"/>
+                                                <input className="projectHeader" placeholder="Add header here" value={projecttitle} onChange={(newValue) => setprojecttitle(newValue.target.value)}/>
+                                                <TypingField value={projectinput} onChange={(newValue) => setProjectInput(newValue)}/>
+                                                <input className="linkk" placeholder="Add link here" value={link} onChange={(newValue) => setlink(newValue.target.value)}/>
                                             </div>
-
-                                            <input id='fileUploadd' type='file' multiple
-                                                    accept='application/pdf, image/png'
-                                                    onChange={hhandleFileEvent}
-                                                    
-                                            />
-
-                                            <label htmlFor='fileUploadd'>
-                                                <a  className={`btnn btn-primary ${!fileLimit ? '' : 'disabled' } `}>
-                                                    Upload Files
-                                                </a>
-                                            </label>
-                                            
-                                            <div className="uploadedd-files-list">
-                                                {uploadeddFiles.map(file => (
-                                                    <div 
-                                                        key={file.id} // Make sure to set a unique key for each item
-                                                        onClick={() => ddeleteFile(file.id)}
-                                                    >
-                                                        {file.name}
-                                                    </div>
-                                                ))} 
+                                            <div className="project_imgpath">
+                                                <input className="file1" placeholder="image1" value={img1} onChange={(newValue) => setimg1(newValue.target.value)}/>
+                                                <input className="file2" placeholder="image2" value={img2} onChange={(newValue) => setimg2(newValue.target.value)}/>
+                                                <input className="file3" placeholder="image3" value={img3} onChange={(newValue) => setimg3(newValue.target.value)}/>
+                                                <input className="file4" placeholder="image4" value={img4} onChange={(newValue) => setimg4(newValue.target.value)}/>
+                                                <input className="file5" placeholder="image5" value={img5} onChange={(newValue) => setimg5(newValue.target.value)}/>
                                             </div>
                                         </form>
-                                        
-
-
-
-                                        <button className="addProjectBtn">add Project</button>
+                                        <button className="addProjectBtn" onClick={(e) => ProjectUpload(e)}>add Project</button>
                                     </div>
 
                                     <button className="onCloseBtn" onClick={() => setShowPopup(false)}>Close</button>
@@ -298,6 +315,10 @@ const Login = () => {
                 </div>
             </div>
             ): null}
+            {getLoggedInUser() === 'admin' ? (
+                <div> 
+                    <button  className="shii" onClick={handleControls}>Controls</button>
+                </div>) : null}
             <div className="catt">
                 <div class="main">
                     <span class="stand"></span>

@@ -21,11 +21,11 @@ $image3 = isset($_POST['image3']) && $_POST['image3'] !== 'null' ? "'" . $conn->
 $image4 = isset($_POST['image4']) && $_POST['image4'] !== 'null' ? "'" . $conn->real_escape_string($_POST['image4']) . "'" : 'NULL';
 $image5 = isset($_POST['image5']) && $_POST['image5'] !== 'null' ? "'" . $conn->real_escape_string($_POST['image5']) . "'" : 'NULL';
 $date = $conn->real_escape_string($_POST['date']);
-$tag = $conn->real_escape_string($_POST['tag']);
+$link = $conn->real_escape_string($_POST['link']);
 
 // Prepare SQL statement
-$sql = "INSERT INTO posts (title, body, image1, image2, image3, image4, image5, date, tag)
-        VALUES ('$title', '$body', $image1, $image2, $image3, $image4, $image5, '$date', '$tag')";
+$sql = "INSERT INTO projects (title, body, img1, img2, img3, img4, img5, date, link)
+        VALUES ('$title', '$body', $image1, $image2, $image3, $image4, $image5, '$date', '$link')";
 
 // Execute SQL statement
 if ($conn->query($sql) === TRUE) {

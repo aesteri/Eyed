@@ -10,7 +10,8 @@
 .Addpost,
 .Addproject,
 .loginContain,
-.important {
+.important,
+.shii {
     -webkit-tap-highlight-color: transparent;
     align-self: center;
     background-color: #fff;
@@ -53,7 +54,8 @@
 .Addpost:hover,
 .Addproject:hover,
 .loginContain:hover,
-.important:hover {
+.important:hover,
+.shii:hover {
     box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
     transform: translate3d(0, 2px, 0);
 }
@@ -69,7 +71,8 @@
 .Addpost:focus,
 .Addproject:focus,
 .loginContain:focus,
-.important:focus {
+.important:focus,
+.shii:focus {
     box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
 
@@ -120,6 +123,7 @@
 .modal {
     padding: 10px;
     text-align: center;
+    
 }
 
 .registerBtn {
@@ -504,4 +508,22 @@
 .whisker:last-child {
   top: 0;
   transform: rotate(-20deg);
+}
+
+.shii {
+  margin: 15px;
+  border-radius: 10%;
+  background-color: indianred;
+}
+.post_imgpath, .project_imgpath {
+  display: block;
+}
+
+
+
+
+.adminContent {
+  max-height: 70vh; /* Set a maximum height for the popup content */
+  overflow-y: auto; /* Enable vertical scrolling if the content overflows */
+  
 }
