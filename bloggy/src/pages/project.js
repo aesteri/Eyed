@@ -10,7 +10,7 @@ const Project = () => {
       );
 
       useEffect(() => {
-        fetch('https://christineyewonkim.com/getProjects.php')
+        fetch('/PHP/getProjects.php')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
