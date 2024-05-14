@@ -20,8 +20,10 @@ const Project = () => {
             .then(data => {
                 // Process the JSON data here
                 //console.log(data); // This will log the array of dictionaries to the console
-                setProjects(data);
-                setCurrentImageIndices(Array(data.length).fill(0));
+                // Process the JSON data here
+                const sortedProjects = data.sort((a, b) => new Date(a.date) - new Date(b.date));
+                setProjects(sortedProjects);
+                setCurrentImageIndices(Array(sortedProjects.length).fill(0));
             })
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
@@ -44,32 +46,36 @@ const Project = () => {
             <div className="heading">
                 <h1>Projects</h1>
             </div>
-            <div className="grid-layout">
-                {projects.map((project, index) => (
-                    <div className="item" key={index}>    
-                        <div className="projectContain">
-                            <div className="textimg">
-                                <h1>{project.header}</h1>
-                                <p>{project.date}</p>
-                                <h3>{project.body}</h3>
+            <div className="gridd">
+                <div className="gridddy">
+                    <div className="grid-layout">
+                        {projects.map((project, index) => (
+                            <div className="item" key={index}>    
+                                <div className="projectContain">
+                                    <div className="textimg">
+                                        <h1>{project.header}</h1>
+                                        <p>{project.date}</p>
+                                        <h3>{project.body}</h3>
+                                    </div>
+                                    <div className="pictureContain">
+                                        {project.picture[currentImageIndices[index]] ? (
+                                            <img src={project.picture[currentImageIndices[index]]} alt={project.header} />
+                                        ): null}
+                                        
+                                        {project.picture.length > 1 && (
+                                            <button className="nextnext" onClick={() => handleNext(index)}> » </button>
+                                        )}
+                                    </div>
+                                    {project.link && (
+                                            <a className="visit_project" href={project.link} target="_blank" rel="noopener noreferrer">
+                                            Visit Project
+                                            </a>
+                                    )}
+                                </div>
                             </div>
-                            <div className="pictureContain">
-                                {project.picture[currentImageIndices[index]] ? (
-                                    <img src={project.picture[currentImageIndices[index]]} alt={project.header} />
-                                ): null}
-                                
-                                {project.picture.length > 1 && (
-                                    <button className="nextnext" onClick={() => handleNext(index)}> » </button>
-                                )}
-                            </div>
-                            {project.link && (
-                                    <a className="visit_project" href={project.link} target="_blank" rel="noopener noreferrer">
-                                    Visit Project
-                                    </a>
-                            )}
-                        </div>
+                        ))}
                     </div>
-                ))}
+                </div>
             </div>
             {projects.length===0 && (
                     <div className="na">

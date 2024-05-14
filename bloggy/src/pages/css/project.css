@@ -29,7 +29,10 @@
     -webkit-user-select: none;
     touch-action: manipulation;
     background-color: #D3B1C2;;
-    width: 85%;
+    width: 80%;
+    padding: 10px;
+    margin: 10px;
+    
 }
 
 .projectContain:hover {
@@ -40,18 +43,32 @@
 .projectContain:focus {
     box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
+.gridddy {
+  width: 90%;
+}
+.gridd {
+  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Horizontally center */
+  align-items: center;
+  
+  
+}
 
 .grid-layout {
     display: grid;
+    text-align: center;
     grid-template-columns: repeat(3, 1fr); /* 4 equal-width columns */
-    gap: 10px; /* Space between grid items */
-    padding: 20px;
-    margin: 10px;
+     /* Space between grid items */
+    row-gap: 5px;
+    
 }
 @media (max-width: 800px) {
     .grid-layout {
       grid-template-columns: 1fr; /* Change to one column for mobile */
       gap: 10px; /* Optionally adjust the gap for mobile */
+      padding: 20px;
     }
   }
 .visit_project {
@@ -69,7 +86,7 @@
     text-align: center;
 }
 .projectContain img {
-    max-width: 100%; /* Ensure images fit within their containers */
+    max-width: 80%; /* Ensure images fit within their containers */
 }
 .heading {
     display: block;
@@ -84,15 +101,27 @@
     overflow: hidden; /* Prevents horizontal scrolling */
     text-overflow: ellipsis; /* Adds "..." if text is truncated */
      /* Optional padding */
-     padding: 10px;
+     padding: 2px;
      @media (max-width: 800px) {
       padding: 2px;
+      
       }
 }
 .projectContain h1{
   width: 100%;
   margin-left: 10px;
-
+  
+  overflow-wrap:normal; /* Ensures text breaks into new lines */
+    white-space: normal; /* Allows text wrapping */
+      text-overflow: ellipsis; /* Adds "..." if text is truncated */
+  font-size: 20px;
+  
+  line-height: 1;
+  @media (max-width: 800px) {
+    
+    line-height: 1;
+    
+    }
 }
 
 .projectContain h3 {
