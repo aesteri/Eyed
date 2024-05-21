@@ -79,8 +79,7 @@ const Project = () => {
             </div>
             {projects.length===0 && (
                     <div className="na">
-                        <h3>No Projects Currently... </h3>
-                        <h4>Come back later!</h4>
+                        <div class="loader"></div>
                     </div>
                 )}
         </div>
