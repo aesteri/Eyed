@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 
 import './css/bucketlist.css';
 import { Helmet } from 'react-helmet'
  
+
 const BucketList = () => {
+    const videoRef = useRef(null);
+  
+    useEffect(() => {
+      if (videoRef.current) {
+        videoRef.current.play();
+      }
+    }, []);
     return (
         <div className="BucketList">
             <Helmet>
@@ -12,7 +20,7 @@ const BucketList = () => {
             <div  className="bbbb">experiences or achievements that a person hopes to have or accomplish during their lifetime</div>
             <div className="list">
                 <div className="a2">
-                    <video src="/pictures/bucketlist/mrdc.mp4" width="320" autoPlay loop muted/>
+                    <video ref={videoRef} src="/pictures/bucketlist/mrdc.mp4" width="320" preload loop muted playsInline/>
                     <img src="/pictures/bucketlist/car4.jpg" alt="Italian Trulli"/>
                 </div> 
             </div>
