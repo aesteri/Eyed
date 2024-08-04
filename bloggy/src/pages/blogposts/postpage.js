@@ -124,7 +124,7 @@ const PostPage = () => {
     return (
         <div className="PostPage">
             <Helmet>
-                <title>{post.header}</title>
+                <title>{post.header.split(".")[1]}</title>
             </Helmet>
             <Link className="backbtn" to={`/blog`}>Go Back</Link>
             <div className="containerr">
