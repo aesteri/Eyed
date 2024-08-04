@@ -29,6 +29,9 @@ const Navbar = () => {
                     <NavLink className='NavLink' href="#" to="/blog" activeStyle>
                         Blog
                     </NavLink>
+                    <NavLink className='NavLink' href="#" to="/bucketlist" activeStyle>
+                        BucketList
+                    </NavLink>
                     <NavLink className='NavLink' href="#" to="/project" activeStyle>
                         Project
                     </NavLink>
@@ -40,6 +43,7 @@ const Navbar = () => {
                     <NavLink className='NavLink'to="/" onClick={toggleSidebar}>Home</NavLink>
                     <NavLink className='NavLink'to="/about" onClick={toggleSidebar}>About</NavLink>
                     <NavLink className='NavLink'to="/blog" onClick={toggleSidebar}>Blog</NavLink>
+                    <NavLink className='NavLink'to="/bucketlist" onClick={toggleSidebar}>BucketList</NavLink>
                     <NavLink className='NavLink'to="/project" onClick={toggleSidebar}>Project</NavLink>
                     <NavLink className='NavLink'to="/login" onClick={toggleSidebar}>{getLoggedInUser() == null ? "Log In" : "Profile"}</NavLink>
                 </SideDrawer>

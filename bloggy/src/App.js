@@ -14,7 +14,7 @@ import Blog from "./pages/blog";
 import Project from "./pages/project";
 import Login from './pages/login';
 import PostPage from './pages/blogposts/postpage';
-
+import BucketList from './pages/bucketlist';
 
 function App() {
   return (
@@ -29,6 +29,7 @@ function App() {
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/blog/post/:postId" element={<PostPage />} />
+                <Route path="/bucketlist" element={<BucketList />} />
             </Routes>
           </div>
           <Footer />

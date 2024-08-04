@@ -85,9 +85,7 @@
     padding: 10px;
     text-align: center;
 }
-.projectContain img {
-    max-width: 80%; /* Ensure images fit within their containers */
-}
+
 .heading {
     display: block;
     text-align: center;
@@ -199,15 +197,7 @@
     box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
   }
 
-  .pictureContain {
-    display: block;
-    margin: 5px;
-    padding: 5px;
-  }
-  .pictureContain img {
-    width: 150px;
-    border: 5px solid whitesmoke;
-  }
+
   .textimg {
     display: block;
     text-align: left;

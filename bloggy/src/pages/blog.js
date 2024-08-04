@@ -28,7 +28,7 @@ const Blog = () => {
             })
             .then(data => {
                 //console.log(data); // Log the fetched data
-                setPosts(data);
+                setPosts(data.reverse());
             })
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
@@ -39,7 +39,7 @@ const Blog = () => {
         if (tag === "all" || tag === "") {
             return posts;
         }
-        return posts.filter((post) => post.tag === tag);
+        return posts.filter((post) => post.tag === tag).reverse();
     };
 
     const handleFilter = (tag) => {
@@ -94,7 +94,7 @@ const Blog = () => {
                 {filteredPosts.map((post, index) => (
                     <div className="item" key={index}>    
                         <div className={`postContain ${post.tag}`} >
-                            <Link className="yar" to={`/blog/post/${index}`}>{post.header}</Link>
+                            <Link className="yar" to={`/blog/post/${ parseInt(post.header.split(".")[0], 10) }`}>{post.header.split(".")[1]}</Link>
                             <p>{post.date}</p>
                             <h3>{post.body[0].slice(0,50) + "..."}</h3>
                             {/* Handle null or valid image src */}
@@ -112,9 +112,8 @@ const Blog = () => {
             </div>
             {posts.length===0 && (
                     <div className="na">
-                        <h3>No Posts Currently... </h3>
-                        <h4>Come back later!</h4>
-                    </div>
+                    <div class="loader"></div>
+                </div>
                 )}
         </div>
     )

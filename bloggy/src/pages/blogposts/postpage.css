@@ -174,3 +174,16 @@
     display: block;
     text-align: center;
 }
+
+.pictureContainz {
+    display: block;
+    padding: 5px;
+  }
+
+.pictureContainz img {
+    width: 300px;
+    @media (max-width: 400px) {
+        width: 250px;
+    }
+    
+}

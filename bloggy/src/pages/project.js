@@ -22,7 +22,7 @@ const Project = () => {
                 //console.log(data); // This will log the array of dictionaries to the console
                 // Process the JSON data here
                 const sortedProjects = data.sort((a, b) => new Date(a.date) - new Date(b.date));
-                setProjects(sortedProjects);
+                setProjects(sortedProjects.reverse());
                 setCurrentImageIndices(Array(sortedProjects.length).fill(0));
             })
             .catch(error => {
@@ -50,21 +50,12 @@ const Project = () => {
                 <div className="gridddy">
                     <div className="grid-layout">
                         {projects.map((project, index) => (
-                            <div className="item" key={index}>    
+                            <div className="item" key={parseInt(project.header.split(".")[0])}>    
                                 <div className="projectContain">
                                     <div className="textimg">
-                                        <h1>{project.header}</h1>
+                                        <h1>{project.header.split(".")[1]}</h1>
                                         <p>{project.date}</p>
                                         <h3>{project.body}</h3>
-                                    </div>
-                                    <div className="pictureContain">
-                                        {project.picture[currentImageIndices[index]] ? (
-                                            <img src={project.picture[currentImageIndices[index]]} alt={project.header} />
-                                        ): null}
-                                        
-                                        {project.picture.length > 1 && (
-                                            <button className="nextnext" onClick={() => handleNext(index)}> » </button>
-                                        )}
                                     </div>
                                     {project.link && (
                                             <a className="visit_project" href={project.link} target="_blank" rel="noopener noreferrer">

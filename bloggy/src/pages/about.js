@@ -26,13 +26,13 @@ const About = () => {
                     <p>
                         I am a Korean American Georgia Tech student, majoring in Computer Science.
                         I concentrate in{' '}
-                        <a href="https://www.cc.gatech.edu/academics/threads/intelligence" target="_blank" rel="noopener noreferrer">
-                            Intelligence
+                        <a href="https://www.cc.gatech.edu/academics/threads/modeling-simulation" target="_blank" rel="noopener noreferrer">
+                            Modeling Simulation
                         </a> and {' '}
                         <a href="https://www.cc.gatech.edu/academics/threads/systems-architecture" target="_blank" rel="noopener noreferrer">
                             Systems Architecture
                         </a>.
-                        I'm also a data acquisitions member and acceleration driver for Hytech Racing. I contribute to the software of the car.
+                        I'm the Data Operations Lead for Hytech Racing, and I contribute to the software of the car. In 2024, I was the acceleration driver for HyTech Racing, breaking the North American record for fastest FSAE electric acceleration time.
                     </p>
                     <p>
                         I spend most of my time working on software for Hytech Racing.
@@ -59,15 +59,18 @@ const About = () => {
                         </a>!
                     </p>
                     <h3>What am I doing now?</h3>
-                    <p>I'm getting ready to compete at Michigan FSAE 24 for hytech racing, and
-                        I'm on track to study abroad at the Seoul National University in South Korea as a Gilman Scholar!
+                    <p>I'm getting ready to compete at Michigan FSAE 25 for hytech racing, and
+                        I'm on track to study abroad at the Seoul National University in South Korea as a Gilman Scholar in Fall 2024!
                     </p>
                 </div>
-                <div className="contactSection">
-                    <h2>Contact</h2>
-                    <ul>
-                        <li>email:  ckim651@gatech.edu</li>
-                    </ul>
+                <div className="sideSection">
+                    <div className="contactSection">
+                        <h2>Contact</h2>
+                        <ul>
+                            <li>email:  ckim651@gatech.edu</li>
+                        </ul>
+                    </div>
+                    
                 </div>
             </div>
         </div>

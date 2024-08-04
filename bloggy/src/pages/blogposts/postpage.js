@@ -129,7 +129,7 @@ const PostPage = () => {
             <Link className="backbtn" to={`/blog`}>Go Back</Link>
             <div className="containerr">
                 <div className="blogpage">
-                    <h1>{post.header}</h1>
+                    <h1>{post.header.split(".")[1]}</h1>
                     <h3>{post.date}</h3>
                     <div className="themeat">
                         <div className="textt">
@@ -140,7 +140,7 @@ const PostPage = () => {
                             ))}
                         </div>
                         {/* Handle null or valid image src */}
-                        <div className="pictureContain">
+                        <div className="pictureContainz">
                             {post.picture[currentImageIndex] ? (
                                 <img className="lol" src={post.picture[currentImageIndex]} alt={post.header} />
                             ) : null}

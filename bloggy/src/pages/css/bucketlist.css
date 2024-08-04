@@ -1,0 +1,67 @@
+
+.list video {
+    transform: rotate(-90deg);
+    transform-origin: center;
+    margin-left: 150px;
+    text-align: center;
+    @media (max-width: 600px) {
+        width: 100px;
+    }
+}
+
+.list {
+    display: block;
+    justify-content:first baseline;
+    text-align: center;
+    margin: 10px;
+
+}
+.a2 {
+    display: block;
+}
+
+.a2 img {
+    width: 50%;
+    margin-right: 10px;
+}
+
+.imgcar {
+    width: 40%;
+    margin: 20px;
+}
+
+.imgcar1 {
+    width: 30%;
+    margin-right: 0px;
+    margin: 10px;
+    @media (max-width: 600px) {
+        width: 100px;
+        margin: 10px;
+    }
+}
+.b1 {
+    margin: 10px;
+    display: block;
+    justify-content: center;
+    text-align: center;
+    @media (max-width: 600px) {
+      
+    }
+    
+}
+.BucketList {
+    display: inline;
+    justify-content: center;
+}
+
+.bbbb {
+    display: block;
+    text-align: center;
+    font-size: 200%;
+    font-style: oblique;
+    margin: 100px;
+    @media (max-width: 600px) {
+        margin: 30px;
+        font-size: 90%;
+    }
+}
