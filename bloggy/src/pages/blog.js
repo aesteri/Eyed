@@ -79,6 +79,8 @@ const Blog = () => {
         <div className="Blog">
             <Helmet>
                 <title>Christine's Blog</title>
+                <meta charSet="utf-8" />
+                <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon.ico" sizes="16x16" />
             </Helmet>
             <div className="firstContain">
                 <h1>Posts</h1>

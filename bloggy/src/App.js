@@ -10,6 +10,7 @@ import {
 import Home from "./pages/index";
 import About from "./pages/about";
 import Blog from "./pages/blog";
+import { Helmet } from 'react-helmet'
 import Project from "./pages/project";
 import Login from './pages/login';
 import PostPage from './pages/blogposts/postpage';

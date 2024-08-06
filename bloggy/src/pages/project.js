@@ -42,6 +42,8 @@ const Project = () => {
         <div className="Projects">
             <Helmet>
                 <title>Christine's Projects</title>
+                <meta charSet="utf-8" />
+                <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon.ico" sizes="16x16" />
             </Helmet>
             <div className="heading">
                 <h1>Projects</h1>

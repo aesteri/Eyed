@@ -2,11 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import { Helmet } from 'react-helmet'
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <Helmet>
+        <title>Christine Kim</title>
+        <meta charSet="utf-8" />
+        <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon.ico" sizes="16x16" />
+        <meta name='description' content='Personal Website for Christine Kim' />
+    </Helmet>
     <App />
   </React.StrictMode>
 );

@@ -8,6 +8,9 @@ const Home = () => {
         <div className="Home">
             <Helmet>
                 <title>Christine Kim</title>
+                <meta charSet="utf-8" />
+                <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon.ico" sizes="16x16" />
+                <meta name='description' content='Personal Website for Christine Kim' />
             </Helmet>
             <div className="shit">
                 <h1>Hi, I'm Christine.</h1>

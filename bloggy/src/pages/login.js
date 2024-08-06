@@ -219,6 +219,8 @@ const Login = () => {
         <div className="Login">
             <Helmet>
                 <title>{getLoggedInUser() == null ? "Login" : "Profile"}</title>
+                <meta charSet="utf-8" />
+                <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon.ico" sizes="16x16" />
             </Helmet>
             <h1 className="loginText">{getLoggedInUser() == null ? "Login" : "Profile"}</h1>
             {getLoggedInUser() == null ? null : (

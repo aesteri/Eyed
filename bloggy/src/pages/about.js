@@ -13,6 +13,8 @@ const About = () => {
         <div className="About">
             <Helmet>
                 <title>About Christine</title>
+                <meta charSet="utf-8" />
+                <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon.ico" sizes="16x16" />
             </Helmet>
             <h1>
                 About Me
@@ -20,7 +22,6 @@ const About = () => {
             <div className="first">
                 <div className="imageContain">
                     <img className="stacy" src='/pictures/meandstacy.png'/>
-            
                 </div>
                 <div className="aboutSection">
                     <p>
