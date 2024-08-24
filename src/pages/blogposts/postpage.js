@@ -126,6 +126,8 @@ const PostPage = () => {
             <Helmet>
                 <title>{post.header.split(".")[1]}</title>
                 <meta charSet="utf-8" />
+                <meta name="description" content="Christine's PostPage" />
+                <meta name="keywords" content="Christine, blog, software engineering, portfolio" />
                 <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon.ico" sizes="16x16" />
             </Helmet>
             <Link className="backbtn" to={`/blog`}>Go Back</Link>

@@ -80,6 +80,8 @@ const Blog = () => {
             <Helmet>
                 <title>Christine's Blog</title>
                 <meta charSet="utf-8" />
+                <meta name="description" content="Christine's Blog" />
+                <meta name="keywords" content="Christine, blog, software engineering, portfolio" />
                 <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon.ico" sizes="16x16" />
             </Helmet>
             <div className="firstContain">

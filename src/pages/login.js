@@ -220,6 +220,8 @@ const Login = () => {
             <Helmet>
                 <title>{getLoggedInUser() == null ? "Login" : "Profile"}</title>
                 <meta charSet="utf-8" />
+                <meta name="description" content="Login Page" />
+                <meta name="keywords" content="Christine, login, software engineering, portfolio" />
                 <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon.ico" sizes="16x16" />
             </Helmet>
             <h1 className="loginText">{getLoggedInUser() == null ? "Login" : "Profile"}</h1>

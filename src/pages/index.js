@@ -10,6 +10,7 @@ const Home = () => {
                 <title>Christine Kim</title>
                 <meta charSet="utf-8" />
                 <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon.ico" sizes="16x16" />
+                <meta name="keywords" content="Christine, home, software engineering, portfolio" />
                 <meta name='description' content='Personal Website for Christine Kim' />
             </Helmet>
             <div className="shit">

@@ -43,6 +43,8 @@ const Project = () => {
             <Helmet>
                 <title>Christine's Projects</title>
                 <meta charSet="utf-8" />
+                <meta name="description" content="Christine's Projects" />
+                <meta name="keywords" content="Christine, projects, software engineering, portfolio" />
                 <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon.ico" sizes="16x16" />
             </Helmet>
             <div className="heading">

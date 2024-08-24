@@ -17,6 +17,8 @@ const BucketList = () => {
             <Helmet>
                 <title>BucketList</title>
                 <meta charSet="utf-8" />
+                <meta name="description" content="Christine's BucketList" />
+                <meta name="keywords" content="Christine, bucketlist, software engineering, portfolio" />
                 <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon.ico" sizes="16x16" />
             </Helmet>
             <div  className="bbbb">experiences or achievements that a person hopes to have or accomplish during their lifetime</div>
