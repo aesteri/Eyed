@@ -1,15 +1,15 @@
- # 🦆 Personal Website
+ # 🎠 Personal Website
 
 Personal Website made on a whim
 ------------------------------------------
 ⭐Christine Kim 
 ⭐1 cup of coffee
 
-## 💁 Description
+## 👽 Description
 
 Played around with SQL, PHP, and ReactJS! Website hosted on hostGator.
 
-## ⏰  Features:
+## ⏰ Features:
 * Login system
 * * Comments feature
   * Admin access 
