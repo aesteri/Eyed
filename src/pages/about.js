@@ -17,13 +17,14 @@ const About = () => {
                 <meta name="description" content="About Christine" />
                 <meta name="keywords" content="Christine, about, software engineering, portfolio" />
                 <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon.ico" sizes="16x16" />
+                <link rel="preload" href="/pictures/meandstacy.png" as="image"/>
             </Helmet>
             <h1>
                 About Me
             </h1>
             <div className="first">
                 <div className="imageContain">
-                    <img className="stacy" src='/pictures/meandstacy.png'/>
+                    <img className="stacy" src='/pictures/meandstacy.png' loading="eager"/>
                 </div>
                 <div className="aboutSection">
                     <p>
@@ -62,8 +63,9 @@ const About = () => {
                         </a>!
                     </p>
                     <h3>What am I doing now?</h3>
-                    <p>I'm getting ready to compete at Michigan FSAE 25 for hytech racing, and
-                        I'm on track to study abroad at the Seoul National University in South Korea as a Gilman Scholar in Fall 2024!
+                    <p>I'm getting ready to compete at Michigan FSAE 25 for hytech racing.
+                        Follow me on LinkedIn for more updates!
+                        
                     </p>
                 </div>
                 <div className="sideSection">

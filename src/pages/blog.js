@@ -104,7 +104,7 @@ const Blog = () => {
                             {/* Handle null or valid image src */}
                             <div className="pictureContain">
                                 {post.picture[currentImageIndices[index]] ? (
-                                    <img src={post.picture[currentImageIndices[index]]} alt={post.header} />
+                                    <img src={post.picture[currentImageIndices[index]]} alt={post.header} loading="eager"/>
                                 ) : null}
                                 {post.picture.length > 1 && (
                                     <button className="nextnext" onClick={() => handleNext(index)}> » </button>
