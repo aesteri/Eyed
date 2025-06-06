@@ -1,6 +1,6 @@
- # 🎠 Personal Website
+ # 🎠 Eyed
 
-Personal Website made on a whim
+Blog Platform made on a whim
 ------------------------------------------
 ⭐Christine Kim 
 
